@@ -1,0 +1,95 @@
+{% extends 'administration/main.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-header bg-light d-flex justify-content-between align-items-center py-3">
+            <h1 class="h3 mb-0 text-gray-800">Liste des Spectacles</h1>
+            <a href="{% url 'administration' %}" class="btn btn-danger text-white">Retour à l'accueil</a>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered">
+                    <thead class="thead-light">
+                        <tr>
+                            <th class="text-center">Type</th>
+                            <th class="text-center">Nom</th>
+                            <th class="text-center">Image</th>
+                            <th class="text-center">Date</th>
+                            <th class="text-center">Lieu</th>
+                            <th class="text-center">Description</th>
+                            <th class="text-center">Nbre Ticket</th>
+                            <th class="text-center">Is Gratuit</th>
+                            <th class="text-center">Prix</th>
+                            <th class="text-center">Debut</th>
+                            <th class="text-center">Fin</th>
+                            <th class="text-center">Streamming</th>
+                            <th class="text-center">Is Valid</th>
+                            <th class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+    
+                        {% for spectacle in spectacle %}
+    
+                        <tr>
+                            <td>{{ spectacle.type_spectacle }}</td>
+                            <td>{{ spectacle.nom_spectacle }}</td>
+                            <td>{{ spectacle.image }}</td>
+                            <td>{{ spectacle.date }}</td>
+                            <td>{{ spectacle.lieu }}</td>
+                            <td>{{ spectacle.description }}</td>
+                            <td>{{ spectacle.ticket_disponible }}</td>
+                            <td>{{ spectacle.is_gratuit }}</td>
+                            <td>{{ spectacle.prix }}</td>
+                            <td>{{ spectacle.heure_debut }}</td>
+                            <td>{{ spectacle.heure_fin }}</td>
+                            <td>{{ spectacle.lien_streaming }}</td>
+                            <td>{{ spectacle.is_valid }}</td>
+                            
+                            <td class="text-center">
+                                <a href="{% url 'SpectacleUpdate' spectacle.id %}" class=" btn-sm btn-success ">
+                                     Modif
+                                </a><br><br>
+                                <a href="{% url 'SpectacleDelete' spectacle.id %}" class="btn-sm btn-danger">
+                                     Supp
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+        <div class="card-footer bg-light">
+            <a href="{% url 'SpectacleCreate' %}" class="btn-sm btn-success">
+                <i class="fa fa-plus"></i> Ajouter 
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        border: none;
+    }
+    .card-header, .card-footer {
+        background-color: #f8f9fa;
+        border-bottom: 1px solid #e3e6f0;
+    }
+    .btn {
+        transition: all 0.3s ease;
+    }
+    .btn:hover {
+        opacity: 0.8;
+    }
+    .table {
+        margin-bottom: 0;
+    }
+    .table th {
+        border-top: none;
+    }
+</style>
+{% endblock %}

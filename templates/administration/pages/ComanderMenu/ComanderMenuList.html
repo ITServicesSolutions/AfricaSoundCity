@@ -1,0 +1,79 @@
+{% extends 'administration/main.html' %}
+
+{% load static %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="card shadow">
+            <div class="card-header bg-light d-flex justify-content-between align-items-center py-3">
+                <h1 class="h3 mb-0 text-gray-800">Liste des Commandes Effectuer</h1>
+                <a href="{% url 'administration' %}" class="btn btn-danger text-white">Retour à l'accueil</a>
+            </div>
+            <div class="card-body">
+                <table class="table table-hover table-bordered">
+                    <thead class="thead-light">
+                        <tr>
+                            <th class="text-center">Type Paiement</th>
+                            <th class="text-center">Menu</th>
+                            <th class="text-center">Nom</th>
+                            <th class="text-center">Prenoms</th>
+                            <th class="text-center">Telephone</th>
+                            <th class="text-center">Quantite</th>
+                            <th class="text-center">Date Paiement</th>
+                            <th class="text-center">Montant</th>
+                            <th class="text-center">Validation</th>
+                            <th class="text-center" style="width: 15%;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for comanderMenu in comanderMenu %}
+                        <tr>
+                            
+                            <td>{{ comanderMenu.type_paiement}}</td>
+                            <td>{{ comanderMenu.menu }}</td>
+                            <td>{{ comanderMenu.nom }}</td>
+                            <td>{{ comanderMenu.prenoms }}</td>
+                            <td>{{ comanderMenu.telephone }}</td>
+                            <td>{{ comanderMenu.nombre_commande }}</td>
+                            <td>{{ comanderMenu.date_paiement }}</td>
+                            <td>{{ comanderMenu.montant }}</td>
+                            <td>{{ comanderMenu.is_valid }}</td>
+                            <td class="text-center">
+                                
+                                <a href="{% url 'ComanderMenuDelete' comanderMenu.id %}" class="btn-sm btn-danger">
+                                    <i class="fa fa-trash"></i> Supprimer
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+    </div>
+    
+
+<style>
+    .card {
+        border: none;
+    }
+    .card-header, .card-footer {
+        background-color: #f8f9fa;
+        border-bottom: 1px solid #e3e6f0;
+    }
+    .btn {
+        transition: all 0.3s ease;
+    }
+    .btn:hover {
+        opacity: 0.8;
+    }
+    .table {
+        margin-bottom: 0;
+    }
+    .table th {
+        border-top: none;
+    }
+</style>    
+    
+{% endblock %}

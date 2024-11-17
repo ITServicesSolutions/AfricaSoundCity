@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Reçu de paiement</title>
+    <link rel="icon" href="{% static 'assets/images/show.png' %}" type="image/x-icon">
+</head>
+<body style="text-align: center;">
+    <h1 style="color: red;">Reçu de paiement</h1>
+    <p>Nom : {{ reservation.nom }} {{ reservation.prenom }}</p>
+    <p>Email : {{ reservation.email }}</p>
+    <p>Téléphone : {{ reservation.telephone }}</p>
+    <p>Instrument : {{ reservation.instrument.type_instrument }}</p>
+    <p>Nombre de places : {{ reservation.nombre_de_places }}</p>
+    <p>Montant payé : {{ reservation.montant }}</p>
+    <p>Nom Instructeur : {{ instructeur }}</p>
+    <p>Date de réservation : {{ reservation.date_reservation }}</p>
+</body>
+</html>
+
+     

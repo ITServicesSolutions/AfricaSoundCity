@@ -1,0 +1,64 @@
+{% extends 'administration/main.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-header bg-light d-flex justify-content-between align-items-center py-3">
+            <h1 class="h3 mb-0 text-gray-800">Liste des Paiement Tickets</h1>
+            <a href="{% url 'administration' %}" class="btn btn-danger text-white">Retour à l'accueil</a>
+        </div>
+        <div class="card-body">
+            <table class="table table-hover table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Spectacle</th>
+                        <th>Email</th>
+                        <th>Quantite</th>
+                        <th>Montant_total</th>
+                        <th>Transaction_id</th>
+                        <th>statut_paiement</th>
+                        <!-- <th class="text-center">Actions</th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for achat in achat %}
+                    <tr>
+                        <td>{{ achat.spectaclce }}</td>
+                        <td>{{ achat.user_email }}</td>
+                        <td>{{ achat.quantity }}</td>
+                        <td>{{ achat.montant_total }}</td>
+                        <td>{{ achat.transaction_id }}</td>
+                        <td>{{ achat.statut_paiement }}</td>
+                        
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+</div>
+
+<style>
+    .card {
+        border: none;
+    }
+    .card-header, .card-footer {
+        background-color: #f8f9fa;
+        border-bottom: 1px solid #e3e6f0;
+    }
+    .btn {
+        transition: all 0.3s ease;
+    }
+    .btn:hover {
+        opacity: 0.8;
+    }
+    .table {
+        margin-bottom: 0;
+    }
+    .table th {
+        border-top: none;
+    }
+</style>
+{% endblock %}

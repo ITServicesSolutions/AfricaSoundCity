@@ -1,0 +1,74 @@
+{% extends 'administration/main.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-header bg-light d-flex justify-content-between align-items-center py-3">
+            <h1 class="h3 mb-0 text-gray-800">Liste des Noms De Formations</h1>
+            <a href="{% url 'administration' %}" class="btn btn-danger text-white">Retour à l'accueil</a>
+        </div>
+        <div class="card-body">
+            <table class="table table-hover table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th class="text-center">Nom</th>
+                        <th class="text-center">Type</th>
+                        <th class="text-center">Image</th>
+                        <th class="text-center">Description</th>
+                        <th class="text-center">Prix</th>
+                        <th class="text-center" style="width: 20%;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for nomFormation in nomFormation %}
+                    <tr>
+                        <td>{{ nomFormation.nom_formation }}</td>
+                        <td>{{ nomFormation.type_instrument }}</td>
+                        <td>{{ nomFormation.image }}</td>
+                        <td>{{ nomFormation.description }}</td>
+                        <td>{{ nomFormation.prix }}</td>
+                        <td class="text-center">
+                            <br>
+                            <a href="{% url 'NomFormationUpdate' nomFormation.id %}" class=" btn-sm btn-success ">
+                                <i class="fa fa-edit"></i> Modifier
+                            </a><br><br>
+                            <a href="{% url 'NomFormationDelete' nomFormation.id %}" class="btn-sm btn-danger">
+                                <i class="fa fa-trash"></i> Supprimer
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer bg-light">
+            <a href="{% url 'NomFormationCreate' %}" class="btn-sm btn-success">
+                <i class="fa fa-plus"></i> Ajouter 
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        border: none;
+    }
+    .card-header, .card-footer {
+        background-color: #f8f9fa;
+        border-bottom: 1px solid #e3e6f0;
+    }
+    .btn {
+        transition: all 0.3s ease;
+    }
+    .btn:hover {
+        opacity: 0.8;
+    }
+    .table {
+        margin-bottom: 0;
+    }
+    .table th {
+        border-top: none;
+    }
+</style>
+{% endblock %}

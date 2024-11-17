@@ -1,0 +1,203 @@
+{% extends 'administration/main.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+
+    <div class="card-header bg-light d-flex justify-content-between align-items-center py-3">
+        <h1 class="h3 mb-0 text-gray-800">Liste des Utilisateurs</h1>
+        <a href="{% url 'administration' %}" class="btn btn-danger text-white">Retour à l'accueil</a>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-header bg-light">
+                    <h2 class="h4 mb-0 text-gray-800">Prochains Concerts</h2>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+						<br><br>
+                        <canvas id="concertChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-header bg-light">
+                    <h2 class="h4 mb-0 text-gray-800">Spectacles</h2>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+						<br><br>
+                        <canvas id="spectacleChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-header bg-light">
+                    <h2 class="h4 mb-0 text-gray-800">Commandes de Menus</h2>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+						<br><br>
+                        <canvas id="commandeChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Chart.js library -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- Custom CSS for chart container -->
+<style>
+    .chart-container {
+        position: relative;
+        height: 300px;
+        width: 100%;
+    }
+</style>
+
+<script>
+    // Graphique des prochains concerts
+    var ctxConcert = document.getElementById('concertChart').getContext('2d');
+    var concertChart = new Chart(ctxConcert, {
+        type: 'bar',
+        data: {
+            labels: {{ concert_dates|safe }},
+            datasets: [{
+                label: 'Nombre de concerts',
+                data: {{ concert_counts|safe }},
+                backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top'
+                }
+            }
+        }
+    });
+
+    // Graphique des spectacles
+    var ctxSpectacle = document.getElementById('spectacleChart').getContext('2d');
+    var spectacleChart = new Chart(ctxSpectacle, {
+        type: 'bar',
+        data: {
+            labels: {{ spectacle_dates|safe }},
+            datasets: [{
+                label: 'Nombre de spectacles',
+                data: {{ spectacle_counts|safe }},
+                backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1,
+                yAxisID: 'y'
+            }, {
+                label: 'Paiements de tickets',
+                data: {{ ticket_payments|safe }},
+                backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                type: 'line',
+                yAxisID: 'y1'
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    position: 'left',
+                    title: {
+                        display: true,
+                        text: 'Nombre de spectacles'
+                    }
+                },
+                y1: {
+                    beginAtZero: true,
+                    position: 'right',
+                    title: {
+                        display: true,
+                        text: 'Paiements de tickets'
+                    },
+                    grid: {
+                        drawOnChartArea: false
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top'
+                }
+            }
+        }
+    });
+
+    // Graphique des commandes de menus
+    var ctxCommande = document.getElementById('commandeChart').getContext('2d');
+    var commandeChart = new Chart(ctxCommande, {
+        type: 'bar',
+        data: {
+            labels: {{ commande_dates|safe }},
+            datasets: [{
+                label: 'Nombre de commandes',
+                data: {{ commande_counts|safe }},
+                backgroundColor: 'rgba(255, 159, 64, 0.6)',
+                borderColor: 'rgba(255, 159, 64, 1)',
+                borderWidth: 1,
+                yAxisID: 'y'
+            }, {
+                label: 'Montant des paiements',
+                data: {{ commande_payments|safe }},
+                backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                type: 'line',
+                yAxisID: 'y1'
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    position: 'left',
+                    title: {
+                        display: true,
+                        text: 'Nombre de commandes'
+                    }
+                },
+                y1: {
+                    beginAtZero: true,
+                    position: 'right',
+                    title: {
+                        display: true,
+                        text: 'Montant des paiements'
+                    },
+                    grid: {
+                        drawOnChartArea: false
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top'
+                }
+            }
+        }
+    });
+</script>
+
+{% endblock %}

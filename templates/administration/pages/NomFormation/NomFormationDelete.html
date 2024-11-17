@@ -1,0 +1,19 @@
+{% extends 'administration/main.html' %}
+
+{% load static %}
+{% block content %}
+<br><br><br><br><br>
+<center>
+    <div class="container mt-5">
+        <h1>Faire Une Suppression</h1>
+        <p>Êtes-vous sûr de vouloir supprimer ?</p>
+        <form method="post" class="mt-3">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Oui, supprimer</button>
+            <a href="{% url 'NomFormationList' %}" class="btn btn-secondary">Annuler</a>
+        </form>
+    </div>
+</center>
+<br><br><br><br>
+{% endblock %}
+

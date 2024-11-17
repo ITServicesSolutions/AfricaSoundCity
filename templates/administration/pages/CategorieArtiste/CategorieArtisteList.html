@@ -1,0 +1,69 @@
+{% extends 'administration/main.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-header bg-light d-flex justify-content-between align-items-center py-3">
+            <h1 class="h3 mb-0 text-gray-800"> Liste des Categories d'Artistes</h1>
+            <a href="{% url 'administration' %}" class="btn btn-danger text-white">Retour à l'accueil</a>
+        </div>
+        <div class="card-body">
+            <table class="table table-hover table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Nom</th>
+                        <th>Categorie</th>
+                        
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for categorieArtiste in categorieArtiste %}
+                    <tr>
+                        <td>{{ categorieArtiste.nom_artiste}}</td>
+                        <td>{{ categorieArtiste.categorie }}</td>
+                        
+                        <td class="text-center">
+                            <a href="{% url 'CategorieArtisteUpdate' categorieArtiste.id %}" class=" btn-sm btn-success mr-2">
+                                <i class="fa fa-edit"></i> Modifier
+                            </a>
+                            <a href="{% url 'CategorieArtisteDelete' categorieArtiste.id %}" class="btn-sm btn-danger">
+                                <i class="fa fa-trash"></i> Supprimer
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer bg-light">
+            <a href="{% url 'CategorieArtisteCreate' %}" class="btn-sm btn-success">
+                <i class="fa fa-plus"></i> Ajouter 
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        border: none;
+    }
+    .card-header, .card-footer {
+        background-color: #f8f9fa;
+        border-bottom: 1px solid #e3e6f0;
+    }
+    .btn {
+        transition: all 0.3s ease;
+    }
+    .btn:hover {
+        opacity: 0.8;
+    }
+    .table {
+        margin-bottom: 0;
+    }
+    .table th {
+        border-top: none;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'administration/main.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-header bg-light d-flex justify-content-between align-items-center py-3">
+            <h1 class="h3 mb-0 text-gray-800">Liste des Utilisateurs</h1>
+            <a href="{% url 'administration' %}" class="btn btn-danger text-white">Retour à l'accueil</a>
+        </div>
+        <div class="card-body">
+            <table class="table table-hover table-bordered" style="text-align: center;">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Email ou Téléphone</th>
+                        <th>Actif</th>
+                        <th>Admin</th>
+                        <th>Artiste</th>
+                        <th>Superuser</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{ user.email_or_phone }}</td>
+                        <td>{{ user.is_active }}</td>
+                        <td>{{ user.is_admin }}</td>
+                        <td>{{ user.is_artistes }}</td>
+                        <td>{{ user.is_superuser }}</td>
+                        <td class="text-center">
+                            <a href="{% url 'UserUpdate' user.pk %}" class="btn-sm btn-success mr-2">
+                                <i class="fa fa-edit"></i> Modifier
+                            </a>
+                            <a href="{% url 'UserDelete' user.pk %}" class="btn-sm btn-danger">
+                                <i class="fa fa-trash"></i> Supprimer
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer bg-light">
+            <a href="{% url 'UserCreate' %}" class="btn-sm btn-success">
+                <i class="fa fa-plus"></i> Ajouter 
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

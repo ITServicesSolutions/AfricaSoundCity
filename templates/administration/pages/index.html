@@ -1,0 +1,438 @@
+{% extends 'administration/main.html' %}
+{% load static %}
+{% block content %}
+
+<br><br>
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="row align-items-center my-3">
+                <div class="col">
+                    <h5 class="page-title">Bienvenue, <span class="username-small">{{ user.email_or_phone }} !</span></h5>
+                </div>
+                <div class="col-auto">
+                    <button type="button" class="btn-sm btn-success">
+                        <span class="fe fe-plus fe-16 mr-0"></span>
+                        {% if user.is_staff or user.is_artist %}
+                            Administrateur
+                        {% endif %}
+                    </button>
+                </div>
+            </div>
+            <div class="file-container border-top">
+                <div class="file-panel mt-4">
+                    <div class="row">
+
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card shadow mb-4">
+                                <div class="card-body file-list">
+                                    <div class="d-flex align-items-center">
+                                        <div class="circle circle-md bg-secondary">
+                                            <span class="fe fe-folder fe-16 text-white"></span>
+                                        </div>
+                                        <div class="flex-fill ml-4 fname">
+                                            <a href="{% url 'UserList' %}">
+                                                <strong style="color: red;">Utilisateur</strong>
+                                            </a>
+                                            <br />
+                                            <span class="badge badge-light text-muted">{{ user_count }} utilisateur(s)</span>
+                                        </div>
+                                    </div>
+                                </div> <!-- .card-body -->
+                            </div> <!-- .card -->
+                        </div> 
+
+
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card shadow mb-4">
+                                <div class="card-body file-list">
+                                    <div class="d-flex align-items-center">
+                                        <div class="circle circle-md bg-secondary">
+                                            <span class="fe fe-folder fe-16 text-white"></span>
+                                        </div>
+                                        <div class="flex-fill ml-4 fname">
+                                            <a href="{% url 'ArtistesList' %}">
+                                                <strong style="color: red;">Artistes</strong>
+                                            </a>
+                                            <br />
+                                            <span class="badge badge-light text-muted">{{ artistes_count }} artiste(s)</span>
+                                        </div>
+                                    </div>
+                                </div> <!-- .card-body -->
+                            </div> <!-- .card -->
+                        </div> 
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card shadow mb-4">
+                                <div class="card-body file-list">
+                                    <div class="d-flex align-items-center">
+                                        <div class="circle circle-md bg-secondary">
+                                            <span class="fe fe-folder fe-16 text-white"></span>
+                                        </div>
+                                        <div class="flex-fill ml-4 fname">
+                                            <a href="{% url 'AchatList' %}">
+                                                <strong style="color: red;">Achats</strong>
+                                            </a>
+                                            <br />
+                                            <span class="badge badge-light text-muted">{{ achat_count }} achat(s)</span>
+                                        </div>
+                                    </div>
+                                </div> <!-- .card-body -->
+                            </div> <!-- .card -->
+                        </div>
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card shadow mb-4">
+                                <div class="card-body file-list">
+                                    <div class="d-flex align-items-center">
+                                        <div class="circle circle-md bg-secondary">
+                                            <span class="fe fe-folder fe-16 text-white"></span>
+                                        </div>
+                                        <div class="flex-fill ml-4 fname">
+                                            <a href="{% url 'CentreList' %}">
+                                                <strong style="color: red;">Centre</strong>
+                                            </a>
+                                            <br/>
+                                            <span class="badge badge-light text-muted">{{ centre_count }} centre(s)</span>
+                                        </div>
+                                    </div>
+                                </div> <!-- .card-body -->
+                            </div> <!-- .card -->
+                        </div> <!-- .col centre -->
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card shadow mb-4">
+                                <div class="card-body file-list">
+                                    <div class="d-flex align-items-center">
+                                        <div class="circle circle-md bg-secondary">
+                                            <span class="fe fe-folder fe-16 text-white"></span>
+                                        </div>
+                                        <div class="flex-fill ml-4 fname">
+                                            <a href="{% url 'ArtisteInviteList' %}">
+                                                <strong style="color: red;">Artiste Invite</strong>
+                                            </a>
+                                            <br/>
+                                            <span class="badge badge-light text-muted">{{ artisteInvite_count }} artiste Invite(s)</span>
+                                        </div>
+                                    </div>
+                                </div> <!-- .card-body -->
+                            </div> <!-- .card -->
+                        </div> 
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card shadow mb-4">
+                                <div class="card-body file-list">
+                                    <div class="d-flex align-items-center">
+                                        <div class="circle circle-md bg-secondary">
+                                            <span class="fe fe-folder fe-16 text-white"></span>
+                                        </div>
+                                        <div class="flex-fill ml-4 fname">
+                                            <a href="{% url 'CategorieArtisteList' %}">
+                                                <strong style="color: red;">Categorie Artiste</strong>
+                                            </a>
+                                            <br />
+                                            <span class="badge badge-light text-muted">{{ categorieArtiste_count }} categorie Artiste(s)</span>
+                                        </div>
+                                    </div>
+                                </div> <!-- .card-body -->
+                            </div> <!-- .card -->
+                        </div> 
+
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card shadow mb-4">
+                                <div class="card-body file-list">
+                                    <div class="d-flex align-items-center">
+                                        <div class="circle circle-md bg-secondary">
+                                            <span class="fe fe-folder fe-16 text-white"></span>
+                                        </div>
+                                        <div class="flex-fill ml-4 fname">
+                                            <a href="{% url 'TypeDiffusionList' %}">
+                                                <strong style="color: red;">Type de Diffusion</strong>
+                                            </a>
+                                            <br />
+                                            <span class="badge badge-light text-muted">{{ typeDiffusion_count }} type de Diffusion(s)</span>
+                                        </div>
+                                    </div>
+                                </div> <!-- .card-body -->
+                            </div> <!-- .card -->
+                        </div>
+
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card shadow mb-4">
+                                <div class="card-body file-list">
+                                    <div class="d-flex align-items-center">
+                                        <div class="circle circle-md bg-secondary">
+                                            <span class="fe fe-folder fe-16 text-white"></span>
+                                        </div>
+                                        <div class="flex-fill ml-4 fname">
+                                            <a href="{% url 'TypeSpectacleList' %}">
+                                                <strong style="color: red;">Type de Spectacle</strong>
+                                            </a>
+                                            <br />
+                                            <span class="badge badge-light text-muted">{{ typeSpectacle_count }} type de Spectacle(s)</span>
+                                        </div>
+                                    </div>
+                                </div> <!-- .card-body -->
+                            </div> <!-- .card -->
+                        </div>
+
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card shadow mb-4">
+                                <div class="card-body file-list">
+                                    <div class="d-flex align-items-center">
+                                        <div class="circle circle-md bg-secondary">
+                                            <span class="fe fe-folder fe-16 text-white"></span>
+                                        </div>
+                                        <div class="flex-fill ml-4 fname">
+                                            <a href="{% url 'SpectacleList' %}">
+                                                <strong style="color: red;">Spectacle</strong>
+                                            </a>
+                                            <br />
+                                            <span class="badge badge-light text-muted">{{ spectacle_count }} spectacle(s)</span>
+                                        </div>
+                                    </div>
+                                </div> <!-- .card-body -->
+                            </div> <!-- .card -->
+                        </div>
+
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card shadow mb-4">
+                                <div class="card-body file-list">
+                                    <div class="d-flex align-items-center">
+                                        <div class="circle circle-md bg-secondary">
+                                            <span class="fe fe-folder fe-16 text-white"></span>
+                                        </div>
+                                        <div class="flex-fill ml-4 fname">
+                                            <a href="{% url 'CodeQRList' %}">
+                                                <strong style="color: red;">CodeQR</strong>
+                                            </a>
+                                            <br />
+                                            <span class="badge badge-light text-muted">{{ codeQR_count }} codeQR(s)</span>
+                                        </div>
+                                    </div>
+                                </div> <!-- .card-body -->
+                            </div> <!-- .card -->
+                        </div>
+
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card shadow mb-4">
+                                <div class="card-body file-list">
+                                    <div class="d-flex align-items-center">
+                                        <div class="circle circle-md bg-secondary">
+                                            <span class="fe fe-folder fe-16 text-white"></span>
+                                        </div>
+                                        <div class="flex-fill ml-4 fname">
+                                            <a href="{% url 'ProchainConcertList' %}">
+                                                <strong style="color: red;">Prochain Concert</strong>
+                                            </a>
+                                            <br />
+                                            <span class="badge badge-light text-muted">{{ prochainConcert_count }} prochain Concert(s)</span>
+                                        </div>
+                                    </div>
+                                </div> <!-- .card-body -->
+                            </div> <!-- .card -->
+                        </div>
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card shadow mb-4">
+                                <div class="card-body file-list">
+                                    <div class="d-flex align-items-center">
+                                        <div class="circle circle-md bg-secondary">
+                                            <span class="fe fe-folder fe-16 text-white"></span>
+                                        </div>
+                                        <div class="flex-fill ml-4 fname">
+                                            <a href="{% url 'CarrouselList' %}">
+                                                <strong style="color: red;">Carrousel</strong>
+                                            </a>
+                                            <br />
+                                            <span class="badge badge-light text-muted">{{ carrousel_count }} carrousel(s)</span>
+                                        </div>
+                                    </div>
+                                </div> <!-- .card-body -->
+                            </div> <!-- .card -->
+                        </div>
+
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card shadow mb-4">
+                                <div class="card-body file-list">
+                                    <div class="d-flex align-items-center">
+                                        <div class="circle circle-md bg-secondary">
+                                            <span class="fe fe-folder fe-16 text-white"></span>
+                                        </div>
+                                        <div class="flex-fill ml-4 fname">
+                                            <a href="{% url 'ReservationList' %}">
+                                                <strong style="color: red;">Reservation</strong>
+                                            </a>
+                                            <br />
+                                            <span class="badge badge-light text-muted">{{ reservation_count }} reservation(s)</span>
+                                        </div>
+                                    </div>
+                                </div> <!-- .card-body -->
+                            </div> <!-- .card -->
+                        </div>
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card shadow mb-4">
+                                <div class="card-body file-list">
+                                    <div class="d-flex align-items-center">
+                                        <div class="circle circle-md bg-secondary">
+                                            <span class="fe fe-folder fe-16 text-white"></span>
+                                        </div>
+                                        <div class="flex-fill ml-4 fname">
+                                            <a href="{% url 'TypeInstrumentList' %}">
+                                                <strong style="color: red;">Type Instrument</strong>
+                                            </a>
+                                            <br />
+                                            <span class="badge badge-light text-muted">{{ typeInstrument_count }} type Instrument(s)</span>
+                                        </div>
+                                    </div>
+                                </div> <!-- .card-body -->
+                            </div> <!-- .card -->
+                        </div>
+
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card shadow mb-4">
+                                <div class="card-body file-list">
+                                    <div class="d-flex align-items-center">
+                                        <div class="circle circle-md bg-secondary">
+                                            <span class="fe fe-folder fe-16 text-white"></span>
+                                        </div>
+                                        <div class="flex-fill ml-4 fname">
+                                            <a href="{% url 'InstrumentList' %}">
+                                                <strong style="color: red;">Instrument</strong>
+                                            </a>
+                                            <br />
+                                            <span class="badge badge-light text-muted">{{ instrument_count }} instrument(s)</span>
+                                        </div>
+                                    </div>
+                                </div> <!-- .card-body -->
+                            </div> <!-- .card -->
+                        </div>
+
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card shadow mb-4">
+                                <div class="card-body file-list">
+                                    <div class="d-flex align-items-center">
+                                        <div class="circle circle-md bg-secondary">
+                                            <span class="fe fe-folder fe-16 text-white"></span>
+                                        </div>
+                                        <div class="flex-fill ml-4 fname">
+                                            <a href="{% url 'NomFormationList' %}">
+                                                <strong style="color: red;">Nom Formation</strong>
+                                            </a>
+                                            <br />
+                                            <span class="badge badge-light text-muted">{{ nomFormation_count }} nom Formation(s)</span>
+                                        </div>
+                                    </div>
+                                </div> <!-- .card-body -->
+                            </div> <!-- .card -->
+                        </div>
+
+
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card shadow mb-4">
+                                <div class="card-body file-list">
+                                    <div class="d-flex align-items-center">
+                                        <div class="circle circle-md bg-secondary">
+                                            <span class="fe fe-folder fe-16 text-white"></span>
+                                        </div>
+                                        <div class="flex-fill ml-4 fname">
+                                            <a href="{% url 'ReserverFormationList' %}">
+                                                <strong style="color: red;">Reserver Formation</strong>
+                                            </a>
+                                            <br />
+                                            <span class="badge badge-light text-muted">{{ reserverFormation_count }} reserver Formation(s)</span>
+                                        </div>
+                                    </div>
+                                </div> <!-- .card-body -->
+                            </div> <!-- .card -->
+                        </div>
+
+                        
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card shadow mb-4">
+                                <div class="card-body file-list">
+                                    <div class="d-flex align-items-center">
+                                        <div class="circle circle-md bg-secondary">
+                                            <span class="fe fe-folder fe-16 text-white"></span>
+                                        </div>
+                                        <div class="flex-fill ml-4 fname">
+                                            <a href="{% url 'RestaurationList' %}">
+                                                <strong style="color: red;">Restauration</strong>
+                                            </a>
+                                            <br />
+                                            <span class="badge badge-light text-muted">{{ restauration_count }} restauration(s)</span>
+                                        </div>
+                                    </div>
+                                </div> <!-- .card-body -->
+                            </div> <!-- .card -->
+                        </div>
+
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card shadow mb-4">
+                                <div class="card-body file-list">
+                                    <div class="d-flex align-items-center">
+                                        <div class="circle circle-md bg-secondary">
+                                            <span class="fe fe-folder fe-16 text-white"></span>
+                                        </div>
+                                        <div class="flex-fill ml-4 fname">
+                                            <a href="{% url 'ComanderMenuList' %}">
+                                                <strong style="color: red;">Comander Menu</strong>
+                                            </a>
+                                            <br />
+                                            <span class="badge badge-light text-muted">{{ comanderMenu_count }} comander Menu.(s)</span>
+                                        </div>
+                                    </div>
+                                </div> <!-- .card-body -->
+                            </div> <!-- .card -->
+                        </div>
+
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card shadow mb-4">
+                                <div class="card-body file-list">
+                                    <div class="d-flex align-items-center">
+                                        <div class="circle circle-md bg-secondary">
+                                            <span class="fe fe-folder fe-16 text-white"></span>
+                                        </div>
+                                        <div class="flex-fill ml-4 fname">
+                                            <a href="{% url 'statistiques' %}">
+                                                <strong style="color: red;">Nos Statistiques</strong>
+                                            </a>
+                                            <br />
+                                            <span class="badge badge-light text-muted">Prochain Concert, Spectacle, Commander Menu</span>
+                                        </div>
+                                    </div>
+                                </div> 
+                            </div> 
+                        </div>
+                        
+
+                    </div> <!-- .row -->
+                </div> <!-- .file-panel -->
+            </div> <!-- .file-container -->
+        </div> <!-- .col -->
+    </div> <!-- .row -->
+</div> <!-- .container-fluid -->
+
+
+<style>
+    .username-small {
+        font-size: 0.8rem; /* Ajustez la taille selon vos besoins */
+        color: #333; /* Optionnel : définir une couleur */
+    }
+</style>
+{% endblock content %}
+<br><br><br><br><br><br><br><br><br><br><br><br>

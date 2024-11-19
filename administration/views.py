@@ -1,24 +1,16 @@
-from django.contrib.auth.decorators import login_required, user_passes_test
-from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
-from django.contrib.auth import get_user_model, authenticate, login
+from django.contrib.auth import get_user_model, authenticate
 from django.contrib.auth.models import User
-from django.conf import settings
 from django.core.mail import send_mail
 from app.models import *
 from .forms import *
 import random
-import string
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-
-from django.views.generic.edit import CreateView
 from django.contrib.auth import get_user_model
-from django.urls import reverse_lazy
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import Group
 
 from rest_framework.permissions import AllowAny
 from rest_framework.generics import CreateAPIView
@@ -26,7 +18,7 @@ from django.contrib.auth import get_user_model
 from .serializers import RegisterUserSerializer
 
 
-from django.db.models import Count, Sum
+from django.db.models import Sum
 
 User = get_user_model()
 
@@ -97,11 +89,7 @@ def login(request):
 
 
 def request_password(request):
-    lower = "abcdefghijklmnopqrstuvwxyz"
-    upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    numbers = "0123456789"
-    symbols = "!@#$%^&*()."
-    string = lower + upper + numbers + symbols
+    string = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()."
     length = 10
 
     generate_password = "".join(random.sample(string, length))
@@ -478,11 +466,13 @@ def SpectacleCreate(request):
         form = SpectacleForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('SpectacleList')
+            return redirect('SpectacleList')  # Redirige vers la liste des spectacles après une soumission valide
+        else:
+            # Si le formulaire n'est pas valide, il renvoie le formulaire avec les erreurs
+            return render(request, 'administration/pages/Spectacle/SpectacleCreate.html', {'form': form})
     else:
-        form = SpectacleForm()
-    context = {'form': form}
-    return render(request, 'administration/pages/Spectacle/SpectacleCreate.html', context)
+        form = SpectacleForm()  # Si c'est une requête GET, on crée un formulaire vide
+    return render(request, 'administration/pages/Spectacle/SpectacleCreate.html', {'form': form})
 
 def SpectacleUpdate(request, pk):
     spectacle = get_object_or_404(Spectacle, pk=pk)
@@ -491,6 +481,9 @@ def SpectacleUpdate(request, pk):
         if form.is_valid():
             form.save()
             return redirect('SpectacleList')
+        else:
+            # Si le formulaire n'est pas valide, il renvoie le formulaire avec les erreurs
+            return render(request, 'administration/pages/Spectacle/SpectacleUpdate.html', {'form': form})
     else:
         form = SpectacleForm(instance=spectacle)
     context = {'form': form}
@@ -560,7 +553,7 @@ def ProchainConcertList(request):
 
 def ProchainConcertCreate(request):
     if request.method == 'POST':
-        form = ProchainConcert(request.POST)
+        form = ProchainConcertForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('ProchainConcertList')
@@ -598,7 +591,7 @@ def ReservationList(request):
 
 def ReservationCreate(request):
     if request.method == 'POST':
-        form = Reservation(request.POST)
+        form = ReservationForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('ReservationList')
@@ -636,7 +629,7 @@ def TypeInstrumentList(request):
 
 def TypeInstrumentCreate(request):
     if request.method == 'POST':
-        form = TypeInstrument(request.POST)
+        form = TypeInstrumentForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('TypeInstrumentList')
@@ -674,7 +667,7 @@ def InstrumentList(request):
 
 def InstrumentCreate(request):
     if request.method == 'POST':
-        form = Instrument(request.POST)
+        form = InstrumentForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('InstrumentList')
@@ -712,7 +705,7 @@ def NomFormationList(request):
 
 def NomFormationCreate(request):
     if request.method == 'POST':
-        form = NomFormation(request.POST)
+        form = NomFormationForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('NomFormationList')
@@ -767,7 +760,7 @@ def RestaurationList(request):
 
 def RestaurationCreate(request):
     if request.method == 'POST':
-        form = Restauration(request.POST)
+        form = RestaurationForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('RestaurationList')
@@ -859,7 +852,7 @@ def ReserverFormationList(request):
 
 def ReserverFormationCreate(request):
     if request.method == 'POST':
-        form = ReserverFormation(request.POST)
+        form = ReserverFormatioForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('ReserverFormationList')
@@ -898,7 +891,7 @@ def CarrouselList(request):
 
 def CarrouselCreate(request):
     if request.method == 'POST':
-        form = Carrousel(request.POST)
+        form = CarrouselForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('CarrouselList')

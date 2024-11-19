@@ -28,12 +28,13 @@
 			<div class="box">
 				<div class="content">
 					<h2>{{ formation.id }}</h2>
-					<!-- <h3>{{ formation.image }}</h3> -->
 					<div class="image-container">
 						<img src="{{ formation.image }}" alt="{{ formation.image.name }}" style="max-width: 80%; position: center;"/>
 					</div>
-					<p>{{ formation.description }}</p>
-					<!-- <a href="#">S'inscrire</a> -->
+					<p>
+						{{ formation.nom_formation }}<br>
+						{{ formation.description }}<br>
+					</p>
 					<a href="{% url 'reservet' %}?instrument={{ formation.type_instrument }}&prix={{ formation.prix }}">Reserver</a>
 
 

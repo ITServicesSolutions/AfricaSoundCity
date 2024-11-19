@@ -1,0 +1,69 @@
+# Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__
+*.so
+
+# Django
+*.log
+*.pot
+*.pyc
+*.sqlite3
+db.sqlite3
+media/
+staticfiles/
+*.env
+*.venv
+.env/
+venv/
+africaEnv/
+venv.bak/
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# Mac OS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Environnements virtuels
+*.env
+*.venv
+.env/
+venv/
+africaEnv/
+
+# Configuration des fichiers de secrets
+config/settings/local.py
+config/settings/.env
+
+# Coverage
+.coverage
+coverage.xml
+*.cover
+nosetests.xml
+test_*.xml
+*.log
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# Archives
+*.tar.gz
+*.zip
+
+# Archives de déploiement
+*.tar
+*.rar
+*.7z
+
+# Gestion des erreurs et fichiers temporaires
+*.bak
+*.swp
+*.swo

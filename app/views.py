@@ -1,62 +1,40 @@
-from django.core.mail import send_mail, BadHeaderError
-from django.urls import reverse
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.utils.encoding import force_bytes, force_str
-from django.contrib.auth import get_user_model, authenticate, login
+# Standard library imports
+from datetime import date, datetime
+
+# Django imports
+from django.conf import settings
+from django.contrib import messages
+from django.contrib.auth import authenticate, get_user_model, login
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import SetPasswordForm
 from django.contrib.auth.tokens import default_token_generator
 from django.core.exceptions import ValidationError as DjangoValidationError
-from django.http import HttpResponse, JsonResponse
-from django.shortcuts import redirect, render, get_object_or_404
-from django.contrib import messages
-from django.contrib.auth.forms import SetPasswordForm
-from django.conf import settings
+from django.core.mail import BadHeaderError, send_mail
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.shortcuts import get_object_or_404, redirect, render
 from django.template.loader import render_to_string
+from django.urls import reverse
+from django.utils import translation
+from django.utils.encoding import force_bytes, force_str
 from django.utils.html import strip_tags
-from rest_framework import viewsets, status, generics
-from rest_framework.response import Response
+from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
+from django.utils.translation import activate
+from django.views.decorators.csrf import csrf_exempt
+from django.views.generic import ListView
+
+# Django REST Framework imports
+from rest_framework import generics, status
 from rest_framework.decorators import api_view
+from rest_framework.exceptions import ValidationError as DRFValidationError
 from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import AllowAny
-from rest_framework.exceptions import ValidationError as DRFValidationError
+from rest_framework.response import Response
 from rest_framework.views import APIView
-import requests
-from .serializers import *
+
+# Local imports
 from .models import *
-from datetime import datetime, date
-from django.views.generic import ListView
-from django.utils.timezone import now
-
-from django.urls import reverse
-
-from django.utils.translation import activate
-from django.http import HttpResponseRedirect
-from django.utils import translation
-from django.contrib.auth.decorators import login_required
-
-from django.template.loader import render_to_string
-from django.views.decorators.csrf import csrf_exempt
-from django.http import HttpResponseNotFound
-
-import os
-from dotenv import load_dotenv
-
-load_dotenv()
-# Déterminer l'environnement actif (défaut : développement)
-env = os.getenv('ENV', 'development').lower()
-
-# Charger les URLs dynamiquement en fonction de l'environnement
-if env == 'production':
-    API_SPECTACLE_URL = os.getenv('API_SPECTACLE_URL_PROD')
-    API_CENTRE_URL = os.getenv('API_CENTRE_URL_PROD')
-    API_FORMATION_URL = os.getenv('API_FORMATION_URL_PROD')
-    API_TYPE_SPECTACLE_URL = os.getenv('API_TYPE_SPECTACLE_URL_PROD')
-    API_RESTAURATION_URL = os.getenv('API_RESTAURATION_URL_PROD')
-else:  # Environnement de développement par défaut
-    API_SPECTACLE_URL = os.getenv('API_SPECTACLE_URL_DEV')
-    API_CENTRE_URL = os.getenv('API_CENTRE_URL_DEV')
-    API_FORMATION_URL = os.getenv('API_FORMATION_URL_DEV')
-    API_TYPE_SPECTACLE_URL = os.getenv('API_TYPE_SPECTACLE_URL_DEV')
-    API_RESTAURATION_URL = os.getenv('API_RESTAURATION_URL_DEV')
+from .serializers import *
+from app.function import *
 
 User = get_user_model()
 
@@ -82,23 +60,6 @@ class RegisterUserView(CreateAPIView):
         return render(request, 'authentication/200_registration_email.html', status=200)
 
 
-class UserViewSet(viewsets.ModelViewSet):
-    queryset = get_user_model().objects.all()
-    serializer_class = RegisterUserSerializer
-
-    def retrieve(self, request, *args, **kwargs):
-        user_instance = self.get_object()
-        serializer = self.get_serializer(user_instance)
-        return Response(serializer.data)
-
-    def update(self, request, *args, **kwargs):
-        user_instance = self.get_object()
-        serializer = self.get_serializer(user_instance, data=request.data, partial=True)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data)
-
-
 @api_view(['DELETE'])
 def delete_user(request, user_id):
     try:
@@ -109,7 +70,6 @@ def delete_user(request, user_id):
         return Response({'message': f'User with ID {user_id} does not exist.'}, status=status.HTTP_404_NOT_FOUND)
     except Exception as e:
         return Response({'message': f'An error occurred: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
 
 @api_view(['GET', 'POST'])
 def login_view(request):
@@ -129,7 +89,6 @@ def login_view(request):
             return JsonResponse({'error': 'Identifiant ou mot de passe incorrect.'}, status=400)
     else:
         return Response({'error': 'La méthode HTTP doit être POST.'}, status=405)
-
 
 @api_view(['POST'])
 def reset_password_email(request):
@@ -168,7 +127,6 @@ def reset_password_email(request):
     else:
         return Response({'message': 'Méthode non autorisée.'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
-
 def reset_password_confirm(request, uidb64, token):
     try:
         uid = force_str(urlsafe_base64_decode(uidb64))
@@ -191,8 +149,6 @@ def reset_password_confirm(request, uidb64, token):
         messages.error(request, 'Ce lien de réinitialisation de mot de passe est invalide.')
         return redirect('page_password_email')
 
-    
-    
 class RendreArtisteView(APIView):
     def post(self, request, user_id):
         # Récupérez les données soumises par l'utilisateur
@@ -208,224 +164,11 @@ class RendreArtisteView(APIView):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
 class ArtistesListView(APIView):
     def get(self, request):
         artistes = Artistes.objects.all()  # Récupère tous les artistes
         serializer = ArtistesSerializer(artistes, many=True)  # Sérialise la liste des artistes
         return Response(serializer.data, status=status.HTTP_200_OK)
-    
-
-
-class CentreViewSet(viewsets.ModelViewSet):
-    queryset = Centre.objects.all()
-    serializer_class = CentreSerializer
-    
-    def list(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset())
-        serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data)
-
-    def retrieve(self, request, *args, **kwargs):
-        instance = self.get_object()
-        serializer = self.get_serializer(instance)
-        return Response(serializer.data)
-
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-    def update(self, request, *args, **kwargs):
-        partial = kwargs.pop('partial', False)
-        instance = self.get_object()
-        serializer = self.get_serializer(instance, data=request.data, partial=partial)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data)
-
-    def destroy(self, request, *args, **kwargs):
-        instance = self.get_object()
-        self.perform_destroy(instance)
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-
-    
-class ArtisteInviteViewSet(viewsets.ModelViewSet):
-    queryset = ArtisteInvite.objects.all()
-    serializer_class = ArtisteInviteSerializer
-    
-    def list(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset())
-        serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data)
-
-    def retrieve(self, request, *args, **kwargs):
-        instance = self.get_object()
-        serializer = self.get_serializer(instance)
-        return Response(serializer.data)
-
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-    def update(self, request, *args, **kwargs):
-        partial = kwargs.pop('partial', False)
-        instance = self.get_object()
-        serializer = self.get_serializer(instance, data=request.data, partial=partial)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data)
-
-    def destroy(self, request, *args, **kwargs):
-        instance = self.get_object()
-        self.perform_destroy(instance)
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-
-
-class CategorieArtisteViewSet(viewsets.ModelViewSet):
-    queryset = CategorieArtiste.objects.all()
-    serializer_class = CategorieArtisteSerializer
-    
-    def list(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset())
-        serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data)
-
-    def retrieve(self, request, *args, **kwargs):
-        instance = self.get_object()
-        serializer = self.get_serializer(instance)
-        return Response(serializer.data)
-
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-    def update(self, request, *args, **kwargs):
-        partial = kwargs.pop('partial', False)
-        instance = self.get_object()
-        serializer = self.get_serializer(instance, data=request.data, partial=partial)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data)
-
-    def destroy(self, request, *args, **kwargs):
-        instance = self.get_object()
-        self.perform_destroy(instance)
-        return Response(status=status.HTTP_204_NO_CONTENT)
-    
-    
-    
-class TypeDiffusionViewSet(viewsets.ModelViewSet):
-    queryset = TypeDiffusion.objects.all()
-    serializer_class = TypeDiffusionSerializer    
-    
-    def list(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset())
-        serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data)
-
-    def retrieve(self, request, *args, **kwargs):
-        instance = self.get_object()
-        serializer = self.get_serializer(instance)
-        return Response(serializer.data)
-
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-    def update(self, request, *args, **kwargs):
-        partial = kwargs.pop('partial', False)
-        instance = self.get_object()
-        serializer = self.get_serializer(instance, data=request.data, partial=partial)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data)
-
-    def destroy(self, request, *args, **kwargs):
-        instance = self.get_object()
-        self.perform_destroy(instance)
-        return Response(status=status.HTTP_204_NO_CONTENT)
-    
-    
-
-class TypeSpectacleViewSet(viewsets.ModelViewSet):
-    queryset = TypeSpectacle.objects.all()
-    serializer_class = TypeSpectacleSerializer
-    
-    def list(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset())
-        serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data)
-
-    def retrieve(self, request, *args, **kwargs):
-        instance = self.get_object()
-        serializer = self.get_serializer(instance)
-        return Response(serializer.data)
-
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-    def update(self, request, *args, **kwargs):
-        partial = kwargs.pop('partial', False)
-        instance = self.get_object()
-        serializer = self.get_serializer(instance, data=request.data, partial=partial)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data)
-
-    def destroy(self, request, *args, **kwargs):
-        instance = self.get_object()
-        self.perform_destroy(instance)
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-
-
-class SpectacleViewSet(viewsets.ModelViewSet):
-    queryset = Spectacle.objects.all()
-    serializer_class = SpectacleSerializer
-    
-    def list(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset())
-        serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data)
-
-    def retrieve(self, request, *args, **kwargs):
-        instance = self.get_object()
-        serializer = self.get_serializer(instance)
-        return Response(serializer.data)
-
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-    def update(self, request, *args, **kwargs):
-        partial = kwargs.pop('partial', False)
-        instance = self.get_object()
-        serializer = self.get_serializer(instance, data=request.data, partial=partial)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data)
-
-    def destroy(self, request, *args, **kwargs):
-        instance = self.get_object()
-        self.perform_destroy(instance)
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-
 
 class CodeQRListCreateAPIView(generics.ListCreateAPIView):
     queryset = CodeQR.objects.all()
@@ -434,8 +177,6 @@ class CodeQRListCreateAPIView(generics.ListCreateAPIView):
 class CodeQRRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = CodeQR.objects.all()
     serializer_class = CodeQRSerializer
-
-
 
 class GenererCodeQRView(generics.CreateAPIView):
     queryset = Spectacle.objects.all()
@@ -478,396 +219,7 @@ def regenerate_qr_codes(request):
     return HttpResponse("Codes QR régénérés avec succès.")
 
 
-
-class ReservationViewSet(viewsets.ModelViewSet):
-    queryset = Reservation.objects.all()
-    serializer_class = ReservationSerializer
-    
-    def list(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset())
-        serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data)
-
-    def retrieve(self, request, *args, **kwargs):
-        instance = self.get_object()
-        serializer = self.get_serializer(instance)
-        return Response(serializer.data)
-
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-    def update(self, request, *args, **kwargs):
-        partial = kwargs.pop('partial', False)
-        instance = self.get_object()
-        serializer = self.get_serializer(instance, data=request.data, partial=partial)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data)
-
-    def destroy(self, request, *args, **kwargs):
-        instance = self.get_object()
-        self.perform_destroy(instance)
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-
-
-class TypeInstrumentViewSet(viewsets.ModelViewSet):
-    queryset = TypeInstrument.objects.all()
-    serializer_class = TypeInstrumentSerializer
-    
-    def list(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset())
-        serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data)
-
-    def retrieve(self, request, *args, **kwargs):
-        instance = self.get_object()
-        serializer = self.get_serializer(instance)
-        return Response(serializer.data)
-
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-    def update(self, request, *args, **kwargs):
-        partial = kwargs.pop('partial', False)
-        instance = self.get_object()
-        serializer = self.get_serializer(instance, data=request.data, partial=partial)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data)
-
-    def destroy(self, request, *args, **kwargs):
-        instance = self.get_object()
-        self.perform_destroy(instance)
-        return Response(status=status.HTTP_204_NO_CONTENT)
-    
-    
-
-class InstrumentViewSet(viewsets.ModelViewSet):
-    queryset = Instrument.objects.all()
-    serializer_class = InstrumentSerializer
-    
-    def list(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset())
-        serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data)
-
-    def retrieve(self, request, *args, **kwargs):
-        instance = self.get_object()
-        serializer = self.get_serializer(instance)
-        return Response(serializer.data)
-
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-    def update(self, request, *args, **kwargs):
-        partial = kwargs.pop('partial', False)
-        instance = self.get_object()
-        serializer = self.get_serializer(instance, data=request.data, partial=partial)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data)
-
-    def destroy(self, request, *args, **kwargs):
-        instance = self.get_object()
-        self.perform_destroy(instance)
-        return Response(status=status.HTTP_204_NO_CONTENT)
-    
-
-
-class NomFormationViewSet(viewsets.ModelViewSet):
-    queryset = NomFormation.objects.all()
-    serializer_class = NomFormationSerializer
-    
-    def list(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset())
-        # formation_data = [formation.serialize() for formation in queryset]
-        serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data)
-
-    def retrieve(self, request, *args, **kwargs):
-        instance = self.get_object()
-        serializer = self.get_serializer(instance)
-        return Response(serializer.data)
-
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-    def update(self, request, *args, **kwargs):
-        partial = kwargs.pop('partial', False)
-        instance = self.get_object()
-        serializer = self.get_serializer(instance, data=request.data, partial=partial)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data)
-
-    def destroy(self, request, *args, **kwargs):
-        instance = self.get_object()
-        self.perform_destroy(instance)
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-
-
-class ServiceViewSet(viewsets.ModelViewSet):
-    queryset = Service.objects.all()
-    serializer_class = ServiceSerializer
-    
-    def list(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset())
-        serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data)
-
-    def retrieve(self, request, *args, **kwargs):
-        instance = self.get_object()
-        serializer = self.get_serializer(instance)
-        return Response(serializer.data)
-
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-    def update(self, request, *args, **kwargs):
-        partial = kwargs.pop('partial', False)
-        instance = self.get_object()
-        serializer = self.get_serializer(instance, data=request.data, partial=partial)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data)
-
-    def destroy(self, request, *args, **kwargs):
-        instance = self.get_object()
-        self.perform_destroy(instance)
-        return Response(status=status.HTTP_204_NO_CONTENT)
-    
-    
-
-class TypePaiementViewSet(viewsets.ModelViewSet):
-    queryset = TypePaiement.objects.all()
-    serializer_class = TypePaiementSerializer
-    
-    def list(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset())
-        serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data)
-
-    def retrieve(self, request, *args, **kwargs):
-        instance = self.get_object()
-        serializer = self.get_serializer(instance)
-        return Response(serializer.data)
-
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-    def update(self, request, *args, **kwargs):
-        partial = kwargs.pop('partial', False)
-        instance = self.get_object()
-        serializer = self.get_serializer(instance, data=request.data, partial=partial)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data)
-
-    def destroy(self, request, *args, **kwargs):
-        instance = self.get_object()
-        self.perform_destroy(instance)
-        return Response(status=status.HTTP_204_NO_CONTENT)
-    
-    
-class ReserverServiceViewSet(viewsets.ModelViewSet):
-    queryset = ReserverService.objects.all()
-    serializer_class = ReserverServiceSerializer
-    
-    def list(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset())
-        serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data)
-
-    def retrieve(self, request, *args, **kwargs):
-        instance = self.get_object()
-        serializer = self.get_serializer(instance)
-        return Response(serializer.data)
-
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-    def update(self, request, *args, **kwargs):
-        partial = kwargs.pop('partial', False)
-        instance = self.get_object()
-        serializer = self.get_serializer(instance, data=request.data, partial=partial)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data)
-
-    def destroy(self, request, *args, **kwargs):
-        instance = self.get_object()
-        self.perform_destroy(instance)
-        return Response(status=status.HTTP_204_NO_CONTENT)
-    
-    
-class RestaurationViewSet(viewsets.ModelViewSet):
-    queryset = Restauration.objects.all()
-    serializer_class = RestaurationSerializer
-    
-    def list(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset())
-        serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data)
-
-    def retrieve(self, request, *args, **kwargs):
-        instance = self.get_object()
-        serializer = self.get_serializer(instance)
-        return Response(serializer.data)
-
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-    def update(self, request, *args, **kwargs):
-        partial = kwargs.pop('partial', False)
-        instance = self.get_object()
-        serializer = self.get_serializer(instance, data=request.data, partial=partial)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data)
-
-    def destroy(self, request, *args, **kwargs):
-        instance = self.get_object()
-        self.perform_destroy(instance)
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-
-class ComanderMenuViewSet(viewsets.ModelViewSet):
-    queryset = ComanderMenu.objects.all()
-    serializer_class = ComanderMenuSerializer
-    
-    def list(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset())
-        serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data)
-
-    def retrieve(self, request, *args, **kwargs):
-        instance = self.get_object()
-        serializer = self.get_serializer(instance)
-        return Response(serializer.data)
-
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-    def update(self, request, *args, **kwargs):
-        partial = kwargs.pop('partial', False)
-        instance = self.get_object()
-        serializer = self.get_serializer(instance, data=request.data, partial=partial)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data)
-
-    def destroy(self, request, *args, **kwargs):
-        instance = self.get_object()
-        self.perform_destroy(instance)
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-
-
-# class PaymentViewSet(viewsets.ModelViewSet):
-#     queryset = Payment.objects.all()
-#     serializer_class = PaymentSerializer
-
-#     def list(self, request, *args, **kwargs):
-#         queryset = self.filter_queryset(self.get_queryset())
-#         serializer = self.get_serializer(queryset, many=True)
-#         return Response(serializer.data)
-
-#     def retrieve(self, request, *args, **kwargs):
-#         instance = self.get_object()
-#         serializer = self.get_serializer(instance)
-#         return Response(serializer.data)
-
-#     def create(self, request, *args, **kwargs):
-#         serializer = self.get_serializer(data=request.data)
-#         serializer.is_valid(raise_exception=True)
-#         serializer.save()
-#         return Response(serializer.data, status=201)
-
-#     def update(self, request, *args, **kwargs):
-#         partial = kwargs.pop('partial', False)
-#         instance = self.get_object()
-#         serializer = self.get_serializer(instance, data=request.data, partial=partial)
-#         serializer.is_valid(raise_exception=True)
-#         serializer.save()
-#         return Response(serializer.data)
-
-#     def destroy(self, request, *args, **kwargs):
-#         instance = self.get_object()
-#         self.perform_destroy(instance)
-#         return Response(status=204)
-    
-    
-
-class ReserverFormationViewSet(viewsets.ModelViewSet):
-    queryset = ReserverFormation.objects.all()
-    serializer_class = ReserverFormationSerializer
-
-    def list(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset())
-        serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data)
-
-    def retrieve(self, request, *args, **kwargs):
-        instance = self.get_object()
-        serializer = self.get_serializer(instance)
-        return Response(serializer.data)
-
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data, status=201)
-
-    def update(self, request, *args, **kwargs):
-        partial = kwargs.pop('partial', False)
-        instance = self.get_object()
-        serializer = self.get_serializer(instance, data=request.data, partial=partial)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data)
-
-    def destroy(self, request, *args, **kwargs):
-        instance = self.get_object()
-        self.perform_destroy(instance)
-        return Response(status=204)
-
-
-
-
-
 ###################    La vue des pages    ###################
-
-
-
 def change_language(request, language):
     activate(language_code)
     if language:
@@ -878,27 +230,15 @@ def change_language(request, language):
     else:
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
-
-
-
 def countdown(request):
     # Récupérer la prochaine date de concert à partir de la base de données
     prochain_evenement = ProchainConcert.objects.select_related('spectacle').first()
     return render(request, 'countdown.html', {'prochain_evenement': prochain_evenement,})
 
-
-
 def home(request):
     
-    response_spectacles = requests.get(API_SPECTACLE_URL)
-    
-    if response_spectacles.status_code == 200:
-        spectacles = response_spectacles.json()
-    else:
-        spectacles = []
-        
-    response_centres = requests.get(API_CENTRE_URL)
-    centres = response_centres.json()
+    spectacles = manage_spectacles(action='list')
+    centres = manage_centres(action='list')
     
     prochain_evenement = ProchainConcert.objects.first()
     prochainconcert = ProchainConcert.objects.all()
@@ -917,21 +257,9 @@ def home(request):
 
     return render(request, 'control_user/pages/index.html', context)
 
-
-
-
 def streamings(request):
-    response_spectacles = requests.get(API_SPECTACLE_URL)
-    
-    if response_spectacles.status_code == 200:
-        spectacles = response_spectacles.json()
-    else:
-        spectacles = []
-
-    
+    spectacles = manage_spectacles(action='list')
     return render(request, 'control_user/pages/streamings.html', {'spectacles': spectacles})
-
-
 
 @login_required
 def access_streaming(request, spectacle_id):
@@ -970,8 +298,6 @@ def access_streaming(request, spectacle_id):
             })
     return render(request, 'control_user/pages/access_streaming.html', {'spectacle': spectacle})
 
-
-
 def create_kkiapay_session(request, spectacle_id):
     spectacle = Spectacle.objects.get(id=spectacle_id)
     quantity = int(request.GET.get('quantity', 1))
@@ -980,9 +306,6 @@ def create_kkiapay_session(request, spectacle_id):
     redirect_url = f"https://kkiapay.me/api/paymentlink?amount={total_amount}&apikey={settings.KKIAPAY_API_KEY}&custom_data[spectacle_id]={spectacle.id}&custom_data[quantity]={quantity}&callback_url={request.build_absolute_uri('/webhook/kkiapay/')}"
    
     return redirect(redirect_url)
-
-
-
 
 def envoyer_codes_secrets_par_email(email, tickets_codes, spectacle):
     if len(tickets_codes) == 1:
@@ -997,11 +320,6 @@ def envoyer_codes_secrets_par_email(email, tickets_codes, spectacle):
     })
     destinataires = [email]
     send_mail(sujet, message, None, destinataires)
-
-
-
-
-
 
 @csrf_exempt
 def kkiapay_webhook(request):
@@ -1043,17 +361,10 @@ def kkiapay_webhook(request):
 
     return JsonResponse({'status': 'success'}, status=200)
 
-
-
-
 def service(request):
-    
-    response_formations = requests.get(API_FORMATION_URL)
-    formations = response_formations.json()
-    
+    formations = manage_nom_formations(action='list')
+
     return render(request, 'control_user/pages/service.html', {'formations': formations})
-
-
 
 def reservet(request):
     instrument = request.GET.get('instrument', '')
@@ -1108,36 +419,30 @@ def kkiapay_callback(request):
         return HttpResponse('OK', status=200)
     return HttpResponse('Method not allowed', status=405)
 
-
 def commander(request):
     return render(request, 'control_user/pages/commander.html')
 
-
 def ticketdetails(request, spectacle_id):
-    
-    api_url_spectacles = f'{API_SPECTACLE_URL}{spectacle_id}/'
-    response_spectacles = requests.get(api_url_spectacles)
-
-    
-    
-    if response_spectacles.status_code == 200:
-        spectacle = response_spectacles.json()
-        return render(request, 'control_user/pages/ticketdetails.html', {'spectacle': spectacle,
-                                                                         'kkiapay_api_key': 'kkiapay_api_key',
-                                                                         'kkiapay_callback_url': 'kkiapay_callback_url'})
-    else:
-        return HttpResponseNotFound('Spectacle not found')
-
-
-
+    spectacle = manage_spectacles(action='retrieve', instance_id=spectacle_id)
+    return render(
+        request, 
+        'control_user/pages/ticketdetails.html', 
+        {
+            'spectacle': spectacle, 
+            'kkiapay_api_key': 'kkiapay_api_key', 
+            'kkiapay_callback_url': 'kkiapay_callback_url'
+        }
+    )
 
 class ShowsListView(ListView):
     template_name = 'control_user/pages/shows.html'
     context_object_name = 'spectacles'
 
     def get_queryset(self):
-        response_spectacles = requests.get(API_SPECTACLE_URL)
-        spectacles = response_spectacles.json() if response_spectacles.status_code == 200 else []
+        # Récupérer la liste des spectacles via la fonction utilitaire
+        spectacles = manage_spectacles(action='list')
+        if not isinstance(spectacles, list):
+            spectacles = []  # Gestion d'erreur si la fonction utilitaire retourne un message d'erreur
 
         type_spectacle_id = self.kwargs.get('type_spectacle_id')
 
@@ -1174,65 +479,22 @@ class ShowsListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        response_typespectacles = requests.get(API_TYPE_SPECTACLE_URL)
-        typespectacles = response_typespectacles.json() if response_typespectacles.status_code == 200 else []
-        context['typespectacles'] = typespectacles
+        # Récupérer la liste des types de spectacles via la fonction utilitaire
+        typespectacles = manage_type_spectacles(action='list')
+        context['typespectacles'] = typespectacles if isinstance(typespectacles, list) else []
 
-        response_spectacles = requests.get(API_SPECTACLE_URL)
-        spectacles = response_spectacles.json() if response_spectacles.status_code == 200 else []
-
-        spectacles_passes = []
-        for spectacle in spectacles:
-            try:
-                date_spectacle = datetime.strptime(spectacle.get('date'), '%Y-%m-%d').date()
-                if date_spectacle < date.today():  # Filtrer les spectacles passés
-                    spectacle_data = {
-                        'type_spectacle': spectacle.get('type_spectacle'),
-                        'nom_spectacle': spectacle.get('nom_spectacle'),
-                        'image': spectacle.get('image'),
-                        'date': date_spectacle,
-                        'lieu': spectacle.get('lieu'),
-                        'description': spectacle.get('description'),
-                        'ticket_disponible': spectacle.get('ticket_disponible'),
-                        'is_gratuit': spectacle.get('is_gratuit'),
-                        'prix': spectacle.get('prix'),
-                        'heure_debut': spectacle.get('heure_debut'),
-                        'heure_fin': spectacle.get('heure_fin'),
-                        'is_valid': spectacle.get('is_valid'),
-                    }
-                    spectacles_passes.append(spectacle_data)
-            except Exception as e:
-                print(f"Error processing spectacle data: {e}")
-                continue
-
-        context['spectacles_passes'] = spectacles_passes
-        context['typespectacles'] = TypeSpectacle.objects.all()
         return context
 
-
-
-
 def restaurant(request):
-    
-    response_restaurants = requests.get(API_RESTAURATION_URL)
-    
-    if response_restaurants.status_code == 200:
-        restaurants = response_restaurants.json()
-    else:
-        restaurants = []
-    
+    restaurants = manage_restauration(action='list')
     
     return render(request, 'control_user/pages/restaurant.html', {'restaurants': restaurants})
 
-
-
 def page_register(request):
-    	return render(request, 'authentication/authentication-register.html')
-
+    return render(request, 'authentication/authentication-register.html')
 
 def page_login(request):
 	return render(request, 'authentication/authentication-login.html')
-
 
 def page_password_email(request):
 	return render(request, 'authentication/reset_password_email.html')

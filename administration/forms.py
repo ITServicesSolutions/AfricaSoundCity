@@ -11,8 +11,6 @@ class UserForm(forms.ModelForm):
             'password': forms.PasswordInput(),
         }
 
-
-
 class ArtistesForm(ModelForm):
     class Meta:
         model = Artistes

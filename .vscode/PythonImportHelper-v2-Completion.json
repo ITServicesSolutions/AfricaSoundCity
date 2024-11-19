@@ -25,14 +25,6 @@
         "documentation": {}
     },
     {
-        "label": "Group",
-        "importPath": "django.contrib.auth.models",
-        "description": "django.contrib.auth.models",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth.models",
-        "documentation": {}
-    },
-    {
         "label": "AbstractUser",
         "importPath": "django.contrib.auth.models",
         "description": "django.contrib.auth.models",
@@ -106,6 +98,14 @@
         "documentation": {}
     },
     {
+        "label": "transaction",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "migrations",
         "importPath": "django.db",
         "description": "django.db",
@@ -143,14 +143,6 @@
         "isExtraImport": true,
         "importPath": "django.utils.timezone",
         "description": "django.utils.timezone",
-        "detail": "django.utils.timezone",
-        "documentation": {}
-    },
-    {
-        "label": "now",
-        "importPath": "django.utils.timezone",
-        "description": "django.utils.timezone",
-        "isExtraImport": true,
         "detail": "django.utils.timezone",
         "documentation": {}
     },
@@ -235,6 +227,14 @@
         "documentation": {}
     },
     {
+        "label": "*",
+        "importPath": "app.models",
+        "description": "app.models",
+        "isExtraImport": true,
+        "detail": "app.models",
+        "documentation": {}
+    },
+    {
         "label": "forms",
         "importPath": "django",
         "description": "django",
@@ -267,7 +267,7 @@
         "documentation": {}
     },
     {
-        "label": "viewsets",
+        "label": "generics",
         "importPath": "rest_framework",
         "description": "rest_framework",
         "isExtraImport": true,
@@ -283,11 +283,59 @@
         "documentation": {}
     },
     {
-        "label": "generics",
-        "importPath": "rest_framework",
-        "description": "rest_framework",
+        "label": "get_user_model",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
         "isExtraImport": true,
-        "detail": "rest_framework",
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "get_user_model",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "authenticate",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "get_user_model",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "get_user_model",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "get_user_model",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "get_user_model",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
         "documentation": {}
     },
     {
@@ -315,55 +363,7 @@
         "documentation": {}
     },
     {
-        "label": "login",
-        "importPath": "django.contrib.auth",
-        "description": "django.contrib.auth",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth",
-        "documentation": {}
-    },
-    {
         "label": "get_user_model",
-        "importPath": "django.contrib.auth",
-        "description": "django.contrib.auth",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth",
-        "documentation": {}
-    },
-    {
-        "label": "get_user_model",
-        "importPath": "django.contrib.auth",
-        "description": "django.contrib.auth",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth",
-        "documentation": {}
-    },
-    {
-        "label": "get_user_model",
-        "importPath": "django.contrib.auth",
-        "description": "django.contrib.auth",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth",
-        "documentation": {}
-    },
-    {
-        "label": "get_user_model",
-        "importPath": "django.contrib.auth",
-        "description": "django.contrib.auth",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth",
-        "documentation": {}
-    },
-    {
-        "label": "get_user_model",
-        "importPath": "django.contrib.auth",
-        "description": "django.contrib.auth",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth",
-        "documentation": {}
-    },
-    {
-        "label": "authenticate",
         "importPath": "django.contrib.auth",
         "description": "django.contrib.auth",
         "isExtraImport": true,
@@ -396,14 +396,6 @@
     },
     {
         "label": "path",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "reverse_lazy",
         "importPath": "django.urls",
         "description": "django.urls",
         "isExtraImport": true,
@@ -451,14 +443,6 @@
         "documentation": {}
     },
     {
-        "label": "reverse",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
         "label": "*",
         "importPath": "app.views",
         "description": "app.views",
@@ -483,27 +467,11 @@
         "documentation": {}
     },
     {
-        "label": "user_passes_test",
-        "importPath": "django.contrib.auth.decorators",
-        "description": "django.contrib.auth.decorators",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth.decorators",
-        "documentation": {}
-    },
-    {
         "label": "login_required",
         "importPath": "django.contrib.auth.decorators",
         "description": "django.contrib.auth.decorators",
         "isExtraImport": true,
         "detail": "django.contrib.auth.decorators",
-        "documentation": {}
-    },
-    {
-        "label": "method_decorator",
-        "importPath": "django.utils.decorators",
-        "description": "django.utils.decorators",
-        "isExtraImport": true,
-        "detail": "django.utils.decorators",
         "documentation": {}
     },
     {
@@ -516,6 +484,14 @@
     },
     {
         "label": "redirect",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "get_object_or_404",
         "importPath": "django.shortcuts",
         "description": "django.shortcuts",
         "isExtraImport": true,
@@ -544,70 +520,6 @@
         "description": "django.shortcuts",
         "isExtraImport": true,
         "detail": "django.shortcuts",
-        "documentation": {}
-    },
-    {
-        "label": "get_object_or_404",
-        "importPath": "django.shortcuts",
-        "description": "django.shortcuts",
-        "isExtraImport": true,
-        "detail": "django.shortcuts",
-        "documentation": {}
-    },
-    {
-        "label": "settings",
-        "importPath": "django.conf",
-        "description": "django.conf",
-        "isExtraImport": true,
-        "detail": "django.conf",
-        "documentation": {}
-    },
-    {
-        "label": "settings",
-        "importPath": "django.conf",
-        "description": "django.conf",
-        "isExtraImport": true,
-        "detail": "django.conf",
-        "documentation": {}
-    },
-    {
-        "label": "settings",
-        "importPath": "django.conf",
-        "description": "django.conf",
-        "isExtraImport": true,
-        "detail": "django.conf",
-        "documentation": {}
-    },
-    {
-        "label": "settings",
-        "importPath": "django.conf",
-        "description": "django.conf",
-        "isExtraImport": true,
-        "detail": "django.conf",
-        "documentation": {}
-    },
-    {
-        "label": "settings",
-        "importPath": "django.conf",
-        "description": "django.conf",
-        "isExtraImport": true,
-        "detail": "django.conf",
-        "documentation": {}
-    },
-    {
-        "label": "settings",
-        "importPath": "django.conf",
-        "description": "django.conf",
-        "isExtraImport": true,
-        "detail": "django.conf",
-        "documentation": {}
-    },
-    {
-        "label": "send_mail",
-        "importPath": "django.core.mail",
-        "description": "django.core.mail",
-        "isExtraImport": true,
-        "detail": "django.core.mail",
         "documentation": {}
     },
     {
@@ -627,6 +539,14 @@
         "documentation": {}
     },
     {
+        "label": "send_mail",
+        "importPath": "django.core.mail",
+        "description": "django.core.mail",
+        "isExtraImport": true,
+        "detail": "django.core.mail",
+        "documentation": {}
+    },
+    {
         "label": "random",
         "kind": 6,
         "isExtraImport": true,
@@ -636,15 +556,6 @@
         "documentation": {}
     },
     {
-        "label": "string",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "string",
-        "description": "string",
-        "detail": "string",
-        "documentation": {}
-    },
-    {
         "label": "APIView",
         "importPath": "rest_framework.views",
         "description": "rest_framework.views",
@@ -677,30 +588,6 @@
         "documentation": {}
     },
     {
-        "label": "CreateView",
-        "importPath": "django.views.generic.edit",
-        "description": "django.views.generic.edit",
-        "isExtraImport": true,
-        "detail": "django.views.generic.edit",
-        "documentation": {}
-    },
-    {
-        "label": "UserCreationForm",
-        "importPath": "django.contrib.auth.forms",
-        "description": "django.contrib.auth.forms",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth.forms",
-        "documentation": {}
-    },
-    {
-        "label": "SetPasswordForm",
-        "importPath": "django.contrib.auth.forms",
-        "description": "django.contrib.auth.forms",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth.forms",
-        "documentation": {}
-    },
-    {
         "label": "AllowAny",
         "importPath": "rest_framework.permissions",
         "description": "rest_framework.permissions",
@@ -730,14 +617,6 @@
         "description": "rest_framework.generics",
         "isExtraImport": true,
         "detail": "rest_framework.generics",
-        "documentation": {}
-    },
-    {
-        "label": "Count",
-        "importPath": "django.db.models",
-        "description": "django.db.models",
-        "isExtraImport": true,
-        "detail": "django.db.models",
         "documentation": {}
     },
     {
@@ -806,14 +685,6 @@
         "documentation": {}
     },
     {
-        "label": "load_dotenv",
-        "importPath": "dotenv",
-        "description": "dotenv",
-        "isExtraImport": true,
-        "detail": "dotenv",
-        "documentation": {}
-    },
-    {
         "label": "config",
         "importPath": "decouple",
         "description": "decouple",
@@ -838,6 +709,46 @@
         "documentation": {}
     },
     {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
         "label": "i18n_patterns",
         "importPath": "django.conf.urls.i18n",
         "description": "django.conf.urls.i18n",
@@ -859,6 +770,14 @@
         "description": "django.core.wsgi",
         "isExtraImport": true,
         "detail": "django.core.wsgi",
+        "documentation": {}
+    },
+    {
+        "label": "BaseCommand",
+        "importPath": "django.core.management.base",
+        "description": "django.core.management.base",
+        "isExtraImport": true,
+        "detail": "django.core.management.base",
         "documentation": {}
     },
     {
@@ -908,6 +827,38 @@
         "description": "django.contrib.auth.admin",
         "isExtraImport": true,
         "detail": "django.contrib.auth.admin",
+        "documentation": {}
+    },
+    {
+        "label": "ObjectDoesNotExist",
+        "importPath": "django.core.exceptions",
+        "description": "django.core.exceptions",
+        "isExtraImport": true,
+        "detail": "django.core.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "ValidationError",
+        "importPath": "django.core.exceptions",
+        "description": "django.core.exceptions",
+        "isExtraImport": true,
+        "detail": "django.core.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "ValidationError",
+        "importPath": "django.core.exceptions",
+        "description": "django.core.exceptions",
+        "isExtraImport": true,
+        "detail": "django.core.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "app.serializers",
+        "description": "app.serializers",
+        "isExtraImport": true,
+        "detail": "app.serializers",
         "documentation": {}
     },
     {
@@ -965,22 +916,6 @@
         "description": "django.core.validators",
         "isExtraImport": true,
         "detail": "django.core.validators",
-        "documentation": {}
-    },
-    {
-        "label": "ValidationError",
-        "importPath": "django.core.exceptions",
-        "description": "django.core.exceptions",
-        "isExtraImport": true,
-        "detail": "django.core.exceptions",
-        "documentation": {}
-    },
-    {
-        "label": "ValidationError",
-        "importPath": "django.core.exceptions",
-        "description": "django.core.exceptions",
-        "isExtraImport": true,
-        "detail": "django.core.exceptions",
         "documentation": {}
     },
     {
@@ -1085,35 +1020,27 @@
         "documentation": {}
     },
     {
-        "label": "urlsafe_base64_encode",
-        "importPath": "django.utils.http",
-        "description": "django.utils.http",
+        "label": "date",
+        "importPath": "datetime",
+        "description": "datetime",
         "isExtraImport": true,
-        "detail": "django.utils.http",
+        "detail": "datetime",
         "documentation": {}
     },
     {
-        "label": "urlsafe_base64_decode",
-        "importPath": "django.utils.http",
-        "description": "django.utils.http",
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
         "isExtraImport": true,
-        "detail": "django.utils.http",
+        "detail": "datetime",
         "documentation": {}
     },
     {
-        "label": "force_bytes",
-        "importPath": "django.utils.encoding",
-        "description": "django.utils.encoding",
+        "label": "SetPasswordForm",
+        "importPath": "django.contrib.auth.forms",
+        "description": "django.contrib.auth.forms",
         "isExtraImport": true,
-        "detail": "django.utils.encoding",
-        "documentation": {}
-    },
-    {
-        "label": "force_str",
-        "importPath": "django.utils.encoding",
-        "description": "django.utils.encoding",
-        "isExtraImport": true,
-        "detail": "django.utils.encoding",
+        "detail": "django.contrib.auth.forms",
         "documentation": {}
     },
     {
@@ -1133,14 +1060,6 @@
         "documentation": {}
     },
     {
-        "label": "JsonResponse",
-        "importPath": "django.http",
-        "description": "django.http",
-        "isExtraImport": true,
-        "detail": "django.http",
-        "documentation": {}
-    },
-    {
         "label": "HttpResponseRedirect",
         "importPath": "django.http",
         "description": "django.http",
@@ -1149,7 +1068,7 @@
         "documentation": {}
     },
     {
-        "label": "HttpResponseNotFound",
+        "label": "JsonResponse",
         "importPath": "django.http",
         "description": "django.http",
         "isExtraImport": true,
@@ -1165,11 +1084,19 @@
         "documentation": {}
     },
     {
-        "label": "render_to_string",
-        "importPath": "django.template.loader",
-        "description": "django.template.loader",
+        "label": "force_bytes",
+        "importPath": "django.utils.encoding",
+        "description": "django.utils.encoding",
         "isExtraImport": true,
-        "detail": "django.template.loader",
+        "detail": "django.utils.encoding",
+        "documentation": {}
+    },
+    {
+        "label": "force_str",
+        "importPath": "django.utils.encoding",
+        "description": "django.utils.encoding",
+        "isExtraImport": true,
+        "detail": "django.utils.encoding",
         "documentation": {}
     },
     {
@@ -1178,6 +1105,38 @@
         "description": "django.utils.html",
         "isExtraImport": true,
         "detail": "django.utils.html",
+        "documentation": {}
+    },
+    {
+        "label": "urlsafe_base64_decode",
+        "importPath": "django.utils.http",
+        "description": "django.utils.http",
+        "isExtraImport": true,
+        "detail": "django.utils.http",
+        "documentation": {}
+    },
+    {
+        "label": "urlsafe_base64_encode",
+        "importPath": "django.utils.http",
+        "description": "django.utils.http",
+        "isExtraImport": true,
+        "detail": "django.utils.http",
+        "documentation": {}
+    },
+    {
+        "label": "csrf_exempt",
+        "importPath": "django.views.decorators.csrf",
+        "description": "django.views.decorators.csrf",
+        "isExtraImport": true,
+        "detail": "django.views.decorators.csrf",
+        "documentation": {}
+    },
+    {
+        "label": "ListView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
         "documentation": {}
     },
     {
@@ -1197,44 +1156,11 @@
         "documentation": {}
     },
     {
-        "label": "requests",
-        "kind": 6,
+        "label": "*",
+        "importPath": "app.function",
+        "description": "app.function",
         "isExtraImport": true,
-        "importPath": "requests",
-        "description": "requests",
-        "detail": "requests",
-        "documentation": {}
-    },
-    {
-        "label": "datetime",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "date",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "ListView",
-        "importPath": "django.views.generic",
-        "description": "django.views.generic",
-        "isExtraImport": true,
-        "detail": "django.views.generic",
-        "documentation": {}
-    },
-    {
-        "label": "csrf_exempt",
-        "importPath": "django.views.decorators.csrf",
-        "description": "django.views.decorators.csrf",
-        "isExtraImport": true,
-        "detail": "django.views.decorators.csrf",
+        "detail": "app.function",
         "documentation": {}
     },
     {
@@ -1556,7 +1482,7 @@
         "kind": 2,
         "importPath": "administration.views",
         "description": "administration.views",
-        "peekOfCode": "def request_password(request):\n    lower = \"abcdefghijklmnopqrstuvwxyz\"\n    upper = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\"\n    numbers = \"0123456789\"\n    symbols = \"!@#$%^&*().\"\n    string = lower + upper + numbers + symbols\n    length = 10\n    generate_password = \"\".join(random.sample(string, length))\n    return generate_password\nclass ResetPasswordAPIView(APIView):",
+        "peekOfCode": "def request_password(request):\n    string = \"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*().\"\n    length = 10\n    generate_password = \"\".join(random.sample(string, length))\n    return generate_password\nclass ResetPasswordAPIView(APIView):\n    def get(self, request):\n        return render(request, 'administration/pages/request_password.html')\n    def post(self, request):\n        email = request.data.get('email')",
         "detail": "administration.views",
         "documentation": {}
     },
@@ -1826,7 +1752,7 @@
         "kind": 2,
         "importPath": "administration.views",
         "description": "administration.views",
-        "peekOfCode": "def SpectacleList(request):\n    spectacle = Spectacle.objects.all()\n    context = {'spectacle': spectacle}\n    return render(request, 'administration/pages/Spectacle/SpectacleList.html', context)\ndef SpectacleCreate(request):\n    if request.method == 'POST':\n        form = SpectacleForm(request.POST)\n        if form.is_valid():\n            form.save()\n            return redirect('SpectacleList')",
+        "peekOfCode": "def SpectacleList(request):\n    spectacle = Spectacle.objects.all()\n    context = {'spectacle': spectacle}\n    return render(request, 'administration/pages/Spectacle/SpectacleList.html', context)\ndef SpectacleCreate(request):\n    if request.method == 'POST':\n        form = SpectacleForm(request.POST)\n        if form.is_valid():\n            form.save()\n            return redirect('SpectacleList')  # Redirige vers la liste des spectacles après une soumission valide",
         "detail": "administration.views",
         "documentation": {}
     },
@@ -1835,7 +1761,7 @@
         "kind": 2,
         "importPath": "administration.views",
         "description": "administration.views",
-        "peekOfCode": "def SpectacleCreate(request):\n    if request.method == 'POST':\n        form = SpectacleForm(request.POST)\n        if form.is_valid():\n            form.save()\n            return redirect('SpectacleList')\n    else:\n        form = SpectacleForm()\n    context = {'form': form}\n    return render(request, 'administration/pages/Spectacle/SpectacleCreate.html', context)",
+        "peekOfCode": "def SpectacleCreate(request):\n    if request.method == 'POST':\n        form = SpectacleForm(request.POST)\n        if form.is_valid():\n            form.save()\n            return redirect('SpectacleList')  # Redirige vers la liste des spectacles après une soumission valide\n        else:\n            # Si le formulaire n'est pas valide, il renvoie le formulaire avec les erreurs\n            return render(request, 'administration/pages/Spectacle/SpectacleCreate.html', {'form': form})\n    else:",
         "detail": "administration.views",
         "documentation": {}
     },
@@ -1844,7 +1770,7 @@
         "kind": 2,
         "importPath": "administration.views",
         "description": "administration.views",
-        "peekOfCode": "def SpectacleUpdate(request, pk):\n    spectacle = get_object_or_404(Spectacle, pk=pk)\n    if request.method == 'POST':\n        form = SpectacleForm(request.POST, instance=spectacle)\n        if form.is_valid():\n            form.save()\n            return redirect('SpectacleList')\n    else:\n        form = SpectacleForm(instance=spectacle)\n    context = {'form': form}",
+        "peekOfCode": "def SpectacleUpdate(request, pk):\n    spectacle = get_object_or_404(Spectacle, pk=pk)\n    if request.method == 'POST':\n        form = SpectacleForm(request.POST, instance=spectacle)\n        if form.is_valid():\n            form.save()\n            return redirect('SpectacleList')\n        else:\n            # Si le formulaire n'est pas valide, il renvoie le formulaire avec les erreurs\n            return render(request, 'administration/pages/Spectacle/SpectacleUpdate.html', {'form': form})",
         "detail": "administration.views",
         "documentation": {}
     },
@@ -1907,7 +1833,7 @@
         "kind": 2,
         "importPath": "administration.views",
         "description": "administration.views",
-        "peekOfCode": "def ProchainConcertList(request):\n    prochainConcert = ProchainConcert.objects.all()\n    context = {'prochainConcert': prochainConcert}\n    return render(request, 'administration/pages/ProchainConcert/ProchainConcertList.html', context)\ndef ProchainConcertCreate(request):\n    if request.method == 'POST':\n        form = ProchainConcert(request.POST)\n        if form.is_valid():\n            form.save()\n            return redirect('ProchainConcertList')",
+        "peekOfCode": "def ProchainConcertList(request):\n    prochainConcert = ProchainConcert.objects.all()\n    context = {'prochainConcert': prochainConcert}\n    return render(request, 'administration/pages/ProchainConcert/ProchainConcertList.html', context)\ndef ProchainConcertCreate(request):\n    if request.method == 'POST':\n        form = ProchainConcertForm(request.POST)\n        if form.is_valid():\n            form.save()\n            return redirect('ProchainConcertList')",
         "detail": "administration.views",
         "documentation": {}
     },
@@ -1916,7 +1842,7 @@
         "kind": 2,
         "importPath": "administration.views",
         "description": "administration.views",
-        "peekOfCode": "def ProchainConcertCreate(request):\n    if request.method == 'POST':\n        form = ProchainConcert(request.POST)\n        if form.is_valid():\n            form.save()\n            return redirect('ProchainConcertList')\n    else:\n        form = ProchainConcertForm()\n    context = {'form': form}\n    return render(request, 'administration/pages/ProchainConcert/ProchainConcertCreate.html', context)",
+        "peekOfCode": "def ProchainConcertCreate(request):\n    if request.method == 'POST':\n        form = ProchainConcertForm(request.POST)\n        if form.is_valid():\n            form.save()\n            return redirect('ProchainConcertList')\n    else:\n        form = ProchainConcertForm()\n    context = {'form': form}\n    return render(request, 'administration/pages/ProchainConcert/ProchainConcertCreate.html', context)",
         "detail": "administration.views",
         "documentation": {}
     },
@@ -1943,7 +1869,7 @@
         "kind": 2,
         "importPath": "administration.views",
         "description": "administration.views",
-        "peekOfCode": "def ReservationList(request):\n    reservation = Reservation.objects.all()\n    context = {'reservation': reservation}\n    return render(request, 'administration/pages/Reservation/ReservationList.html', context)\ndef ReservationCreate(request):\n    if request.method == 'POST':\n        form = Reservation(request.POST)\n        if form.is_valid():\n            form.save()\n            return redirect('ReservationList')",
+        "peekOfCode": "def ReservationList(request):\n    reservation = Reservation.objects.all()\n    context = {'reservation': reservation}\n    return render(request, 'administration/pages/Reservation/ReservationList.html', context)\ndef ReservationCreate(request):\n    if request.method == 'POST':\n        form = ReservationForm(request.POST)\n        if form.is_valid():\n            form.save()\n            return redirect('ReservationList')",
         "detail": "administration.views",
         "documentation": {}
     },
@@ -1952,7 +1878,7 @@
         "kind": 2,
         "importPath": "administration.views",
         "description": "administration.views",
-        "peekOfCode": "def ReservationCreate(request):\n    if request.method == 'POST':\n        form = Reservation(request.POST)\n        if form.is_valid():\n            form.save()\n            return redirect('ReservationList')\n    else:\n        form = ReservationForm()\n    context = {'form': form}\n    return render(request, 'administration/pages/Reservation/ReservationCreate.html', context)",
+        "peekOfCode": "def ReservationCreate(request):\n    if request.method == 'POST':\n        form = ReservationForm(request.POST)\n        if form.is_valid():\n            form.save()\n            return redirect('ReservationList')\n    else:\n        form = ReservationForm()\n    context = {'form': form}\n    return render(request, 'administration/pages/Reservation/ReservationCreate.html', context)",
         "detail": "administration.views",
         "documentation": {}
     },
@@ -1979,7 +1905,7 @@
         "kind": 2,
         "importPath": "administration.views",
         "description": "administration.views",
-        "peekOfCode": "def TypeInstrumentList(request):\n    typeInstrument = TypeInstrument.objects.all()\n    context = {'typeInstrument': typeInstrument}\n    return render(request, 'administration/pages/TypeInstrument/TypeInstrumentList.html', context)\ndef TypeInstrumentCreate(request):\n    if request.method == 'POST':\n        form = TypeInstrument(request.POST)\n        if form.is_valid():\n            form.save()\n            return redirect('TypeInstrumentList')",
+        "peekOfCode": "def TypeInstrumentList(request):\n    typeInstrument = TypeInstrument.objects.all()\n    context = {'typeInstrument': typeInstrument}\n    return render(request, 'administration/pages/TypeInstrument/TypeInstrumentList.html', context)\ndef TypeInstrumentCreate(request):\n    if request.method == 'POST':\n        form = TypeInstrumentForm(request.POST)\n        if form.is_valid():\n            form.save()\n            return redirect('TypeInstrumentList')",
         "detail": "administration.views",
         "documentation": {}
     },
@@ -1988,7 +1914,7 @@
         "kind": 2,
         "importPath": "administration.views",
         "description": "administration.views",
-        "peekOfCode": "def TypeInstrumentCreate(request):\n    if request.method == 'POST':\n        form = TypeInstrument(request.POST)\n        if form.is_valid():\n            form.save()\n            return redirect('TypeInstrumentList')\n    else:\n        form = TypeInstrumentForm()\n    context = {'form': form}\n    return render(request, 'administration/pages/TypeInstrument/TypeInstrumentCreate.html', context)",
+        "peekOfCode": "def TypeInstrumentCreate(request):\n    if request.method == 'POST':\n        form = TypeInstrumentForm(request.POST)\n        if form.is_valid():\n            form.save()\n            return redirect('TypeInstrumentList')\n    else:\n        form = TypeInstrumentForm()\n    context = {'form': form}\n    return render(request, 'administration/pages/TypeInstrument/TypeInstrumentCreate.html', context)",
         "detail": "administration.views",
         "documentation": {}
     },
@@ -2015,7 +1941,7 @@
         "kind": 2,
         "importPath": "administration.views",
         "description": "administration.views",
-        "peekOfCode": "def InstrumentList(request):\n    instrument = Instrument.objects.all()\n    context = {'instrument': instrument}\n    return render(request, 'administration/pages/Instrument/InstrumentList.html', context)\ndef InstrumentCreate(request):\n    if request.method == 'POST':\n        form = Instrument(request.POST)\n        if form.is_valid():\n            form.save()\n            return redirect('InstrumentList')",
+        "peekOfCode": "def InstrumentList(request):\n    instrument = Instrument.objects.all()\n    context = {'instrument': instrument}\n    return render(request, 'administration/pages/Instrument/InstrumentList.html', context)\ndef InstrumentCreate(request):\n    if request.method == 'POST':\n        form = InstrumentForm(request.POST)\n        if form.is_valid():\n            form.save()\n            return redirect('InstrumentList')",
         "detail": "administration.views",
         "documentation": {}
     },
@@ -2024,7 +1950,7 @@
         "kind": 2,
         "importPath": "administration.views",
         "description": "administration.views",
-        "peekOfCode": "def InstrumentCreate(request):\n    if request.method == 'POST':\n        form = Instrument(request.POST)\n        if form.is_valid():\n            form.save()\n            return redirect('InstrumentList')\n    else:\n        form = InstrumentForm()\n    context = {'form': form}\n    return render(request, 'administration/pages/Instrument/InstrumentCreate.html', context)",
+        "peekOfCode": "def InstrumentCreate(request):\n    if request.method == 'POST':\n        form = InstrumentForm(request.POST)\n        if form.is_valid():\n            form.save()\n            return redirect('InstrumentList')\n    else:\n        form = InstrumentForm()\n    context = {'form': form}\n    return render(request, 'administration/pages/Instrument/InstrumentCreate.html', context)",
         "detail": "administration.views",
         "documentation": {}
     },
@@ -2051,7 +1977,7 @@
         "kind": 2,
         "importPath": "administration.views",
         "description": "administration.views",
-        "peekOfCode": "def NomFormationList(request):\n    nomFormation = NomFormation.objects.all()\n    context = {'nomFormation': nomFormation}\n    return render(request, 'administration/pages/NomFormation/NomFormationList.html', context)\ndef NomFormationCreate(request):\n    if request.method == 'POST':\n        form = NomFormation(request.POST)\n        if form.is_valid():\n            form.save()\n            return redirect('NomFormationList')",
+        "peekOfCode": "def NomFormationList(request):\n    nomFormation = NomFormation.objects.all()\n    context = {'nomFormation': nomFormation}\n    return render(request, 'administration/pages/NomFormation/NomFormationList.html', context)\ndef NomFormationCreate(request):\n    if request.method == 'POST':\n        form = NomFormationForm(request.POST)\n        if form.is_valid():\n            form.save()\n            return redirect('NomFormationList')",
         "detail": "administration.views",
         "documentation": {}
     },
@@ -2060,7 +1986,7 @@
         "kind": 2,
         "importPath": "administration.views",
         "description": "administration.views",
-        "peekOfCode": "def NomFormationCreate(request):\n    if request.method == 'POST':\n        form = NomFormation(request.POST)\n        if form.is_valid():\n            form.save()\n            return redirect('NomFormationList')\n    else:\n        form = NomFormationForm()\n    context = {'form': form}\n    return render(request, 'administration/pages/NomFormation/NomFormationCreate.html', context)",
+        "peekOfCode": "def NomFormationCreate(request):\n    if request.method == 'POST':\n        form = NomFormationForm(request.POST)\n        if form.is_valid():\n            form.save()\n            return redirect('NomFormationList')\n    else:\n        form = NomFormationForm()\n    context = {'form': form}\n    return render(request, 'administration/pages/NomFormation/NomFormationCreate.html', context)",
         "detail": "administration.views",
         "documentation": {}
     },
@@ -2087,7 +2013,7 @@
         "kind": 2,
         "importPath": "administration.views",
         "description": "administration.views",
-        "peekOfCode": "def RestaurationList(request):\n    restauration = Restauration.objects.all()\n    context = {'restauration': restauration}\n    return render(request, 'administration/pages/Restauration/RestaurationList.html', context)\ndef RestaurationCreate(request):\n    if request.method == 'POST':\n        form = Restauration(request.POST)\n        if form.is_valid():\n            form.save()\n            return redirect('RestaurationList')",
+        "peekOfCode": "def RestaurationList(request):\n    restauration = Restauration.objects.all()\n    context = {'restauration': restauration}\n    return render(request, 'administration/pages/Restauration/RestaurationList.html', context)\ndef RestaurationCreate(request):\n    if request.method == 'POST':\n        form = RestaurationForm(request.POST)\n        if form.is_valid():\n            form.save()\n            return redirect('RestaurationList')",
         "detail": "administration.views",
         "documentation": {}
     },
@@ -2096,7 +2022,7 @@
         "kind": 2,
         "importPath": "administration.views",
         "description": "administration.views",
-        "peekOfCode": "def RestaurationCreate(request):\n    if request.method == 'POST':\n        form = Restauration(request.POST)\n        if form.is_valid():\n            form.save()\n            return redirect('RestaurationList')\n    else:\n        form = RestaurationForm()\n    context = {'form': form}\n    return render(request, 'administration/pages/Restauration/RestaurationCreate.html', context)",
+        "peekOfCode": "def RestaurationCreate(request):\n    if request.method == 'POST':\n        form = RestaurationForm(request.POST)\n        if form.is_valid():\n            form.save()\n            return redirect('RestaurationList')\n    else:\n        form = RestaurationForm()\n    context = {'form': form}\n    return render(request, 'administration/pages/Restauration/RestaurationCreate.html', context)",
         "detail": "administration.views",
         "documentation": {}
     },
@@ -2141,7 +2067,7 @@
         "kind": 2,
         "importPath": "administration.views",
         "description": "administration.views",
-        "peekOfCode": "def ReserverFormationList(request):\n    reserverFormation = ReserverFormation.objects.all()\n    context = {'reserverFormation': reserverFormation}\n    return render(request, 'administration/pages/ReserverFormation/ReserverFormationList.html', context)\ndef ReserverFormationCreate(request):\n    if request.method == 'POST':\n        form = ReserverFormation(request.POST)\n        if form.is_valid():\n            form.save()\n            return redirect('ReserverFormationList')",
+        "peekOfCode": "def ReserverFormationList(request):\n    reserverFormation = ReserverFormation.objects.all()\n    context = {'reserverFormation': reserverFormation}\n    return render(request, 'administration/pages/ReserverFormation/ReserverFormationList.html', context)\ndef ReserverFormationCreate(request):\n    if request.method == 'POST':\n        form = ReserverFormatioForm(request.POST)\n        if form.is_valid():\n            form.save()\n            return redirect('ReserverFormationList')",
         "detail": "administration.views",
         "documentation": {}
     },
@@ -2150,7 +2076,7 @@
         "kind": 2,
         "importPath": "administration.views",
         "description": "administration.views",
-        "peekOfCode": "def ReserverFormationCreate(request):\n    if request.method == 'POST':\n        form = ReserverFormation(request.POST)\n        if form.is_valid():\n            form.save()\n            return redirect('ReserverFormationList')\n    else:\n        form = ReserverFormatioForm()\n    context = {'form': form}\n    return render(request, 'administration/pages/ReserverFormation/ReserverFormationCreate.html', context)",
+        "peekOfCode": "def ReserverFormationCreate(request):\n    if request.method == 'POST':\n        form = ReserverFormatioForm(request.POST)\n        if form.is_valid():\n            form.save()\n            return redirect('ReserverFormationList')\n    else:\n        form = ReserverFormatioForm()\n    context = {'form': form}\n    return render(request, 'administration/pages/ReserverFormation/ReserverFormationCreate.html', context)",
         "detail": "administration.views",
         "documentation": {}
     },
@@ -2177,7 +2103,7 @@
         "kind": 2,
         "importPath": "administration.views",
         "description": "administration.views",
-        "peekOfCode": "def CarrouselList(request):\n    carrousel = Carrousel.objects.all()\n    context = {'carrousel': carrousel}\n    return render(request, 'administration/pages/Carrousel/CarrouselList.html', context)\ndef CarrouselCreate(request):\n    if request.method == 'POST':\n        form = Carrousel(request.POST)\n        if form.is_valid():\n            form.save()\n            return redirect('CarrouselList')",
+        "peekOfCode": "def CarrouselList(request):\n    carrousel = Carrousel.objects.all()\n    context = {'carrousel': carrousel}\n    return render(request, 'administration/pages/Carrousel/CarrouselList.html', context)\ndef CarrouselCreate(request):\n    if request.method == 'POST':\n        form = CarrouselForm(request.POST)\n        if form.is_valid():\n            form.save()\n            return redirect('CarrouselList')",
         "detail": "administration.views",
         "documentation": {}
     },
@@ -2186,7 +2112,7 @@
         "kind": 2,
         "importPath": "administration.views",
         "description": "administration.views",
-        "peekOfCode": "def CarrouselCreate(request):\n    if request.method == 'POST':\n        form = Carrousel(request.POST)\n        if form.is_valid():\n            form.save()\n            return redirect('CarrouselList')\n    else:\n        form = CarrouselForm()\n    context = {'form': form}\n    return render(request, 'administration/pages/Carrousel/CarrouselCreate.html', context)",
+        "peekOfCode": "def CarrouselCreate(request):\n    if request.method == 'POST':\n        form = CarrouselForm(request.POST)\n        if form.is_valid():\n            form.save()\n            return redirect('CarrouselList')\n    else:\n        form = CarrouselForm()\n    context = {'form': form}\n    return render(request, 'administration/pages/Carrousel/CarrouselCreate.html', context)",
         "detail": "administration.views",
         "documentation": {}
     },
@@ -2695,6 +2621,33 @@
         "documentation": {}
     },
     {
+        "label": "Seeder",
+        "kind": 6,
+        "importPath": "app.management.commands.seed-superadmin",
+        "description": "app.management.commands.seed-superadmin",
+        "peekOfCode": "class Seeder:\n    @classmethod\n    def seedSuperAdmin(cls):       \n        super_email_or_phone = input(\"Enter super user email or phone:\")\n        super_password = input(\"Enter super user password:\")\n        with transaction.atomic():\n            # Recherchons un utilisateur existant basé sur email_or_phone\n            super_user, created = User.objects.get_or_create(\n                email_or_phone=super_email_or_phone,\n                defaults={",
+        "detail": "app.management.commands.seed-superadmin",
+        "documentation": {}
+    },
+    {
+        "label": "Command",
+        "kind": 6,
+        "importPath": "app.management.commands.seed-superadmin",
+        "description": "app.management.commands.seed-superadmin",
+        "peekOfCode": "class Command(BaseCommand):\n    help = 'Seed the database with initial data'\n    def handle(self, *args, **kwargs):\n        self.stdout.write('Seeding Super Admin...')\n        Seeder.seedSuperAdmin()\n        self.stdout.write(self.style.SUCCESS('Successfully seeded the Super Admin'))",
+        "detail": "app.management.commands.seed-superadmin",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "kind": 5,
+        "importPath": "app.management.commands.seed-superadmin",
+        "description": "app.management.commands.seed-superadmin",
+        "peekOfCode": "User = get_user_model()\nclass Seeder:\n    @classmethod\n    def seedSuperAdmin(cls):       \n        super_email_or_phone = input(\"Enter super user email or phone:\")\n        super_password = input(\"Enter super user password:\")\n        with transaction.atomic():\n            # Recherchons un utilisateur existant basé sur email_or_phone\n            super_user, created = User.objects.get_or_create(\n                email_or_phone=super_email_or_phone,",
+        "detail": "app.management.commands.seed-superadmin",
+        "documentation": {}
+    },
+    {
         "label": "Command",
         "kind": 6,
         "importPath": "app.management.commands.update_active_concert",
@@ -2935,6 +2888,159 @@
         "description": "app.apps",
         "peekOfCode": "class AppConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'app'",
         "detail": "app.apps",
+        "documentation": {}
+    },
+    {
+        "label": "manage_type_spectacles",
+        "kind": 2,
+        "importPath": "app.function",
+        "description": "app.function",
+        "peekOfCode": "def manage_type_spectacles(action, data=None, instance_id=None):\n    \"\"\"\n    Fonction pour gérer les opérations CRUD sur les objets TypeSpectacle.\n    :param action: L'action à effectuer ('list', 'retrieve', 'create', 'update', 'delete').\n    :param data: Les données nécessaires pour créer ou mettre à jour un objet.\n    :param instance_id: L'ID de l'objet à récupérer, mettre à jour ou supprimer.\n    :return: Les données sérialisées ou un message d'état.\n    \"\"\"\n    try:\n        if action == 'list':",
+        "detail": "app.function",
+        "documentation": {}
+    },
+    {
+        "label": "manage_type_spectacles",
+        "kind": 2,
+        "importPath": "app.function",
+        "description": "app.function",
+        "peekOfCode": "def manage_type_spectacles(action, data=None, instance_id=None):\n    \"\"\"\n    Fonction utilitaire pour gérer les opérations CRUD sur les objets TypeSpectacle.\n    :param action: L'action à effectuer ('list', 'retrieve', 'create', 'update', 'delete').\n    :param data: Les données nécessaires pour créer ou mettre à jour un objet.\n    :param instance_id: L'ID de l'objet à récupérer, mettre à jour ou supprimer.\n    :return: Les données sérialisées ou un message d'état.\n    \"\"\"\n    try:\n        if action == 'list':",
+        "detail": "app.function",
+        "documentation": {}
+    },
+    {
+        "label": "manage_spectacles",
+        "kind": 2,
+        "importPath": "app.function",
+        "description": "app.function",
+        "peekOfCode": "def manage_spectacles(action, data=None, instance_id=None):\n    \"\"\"\n    Fonction utilitaire pour gérer les opérations CRUD sur les objets Spectacle.\n    :param action: L'action à effectuer ('list', 'retrieve', 'create', 'update', 'delete').\n    :param data: Les données nécessaires pour créer ou mettre à jour un objet.\n    :param instance_id: L'ID de l'objet à récupérer, mettre à jour ou supprimer.\n    :return: Les données sérialisées ou un message d'état.\n    \"\"\"\n    try:\n        if action == 'list':",
+        "detail": "app.function",
+        "documentation": {}
+    },
+    {
+        "label": "manage_centres",
+        "kind": 2,
+        "importPath": "app.function",
+        "description": "app.function",
+        "peekOfCode": "def manage_centres(action, data=None, instance_id=None):\n    \"\"\"\n    Fonction utilitaire pour gérer les opérations CRUD sur les objets Centre.\n    :param action: L'action à effectuer ('list', 'retrieve', 'create', 'update', 'delete').\n    :param data: Les données nécessaires pour créer ou mettre à jour un objet.\n    :param instance_id: L'ID de l'objet à récupérer, mettre à jour ou supprimer.\n    :return: Les données sérialisées ou un message d'état.\n    \"\"\"\n    try:\n        if action == 'list':",
+        "detail": "app.function",
+        "documentation": {}
+    },
+    {
+        "label": "manage_reservations",
+        "kind": 2,
+        "importPath": "app.function",
+        "description": "app.function",
+        "peekOfCode": "def manage_reservations(action, data=None, instance_id=None):\n    try:\n        if action == 'list':\n            queryset = Reservation.objects.all()\n            serializer = ReservationSerializer(queryset, many=True)\n            return serializer.data\n        if action == 'retrieve':\n            instance = Reservation.objects.get(id=instance_id)\n            serializer = ReservationSerializer(instance)\n            return serializer.data",
+        "detail": "app.function",
+        "documentation": {}
+    },
+    {
+        "label": "manage_type_instruments",
+        "kind": 2,
+        "importPath": "app.function",
+        "description": "app.function",
+        "peekOfCode": "def manage_type_instruments(action, data=None, instance_id=None):\n    try:\n        if action == 'list':\n            queryset = TypeInstrument.objects.all()\n            serializer = TypeInstrumentSerializer(queryset, many=True)\n            return serializer.data\n        if action == 'retrieve':\n            instance = TypeInstrument.objects.get(id=instance_id)\n            serializer = TypeInstrumentSerializer(instance)\n            return serializer.data",
+        "detail": "app.function",
+        "documentation": {}
+    },
+    {
+        "label": "manage_instruments",
+        "kind": 2,
+        "importPath": "app.function",
+        "description": "app.function",
+        "peekOfCode": "def manage_instruments(action, data=None, instance_id=None):\n    try:\n        if action == 'list':\n            queryset = Instrument.objects.all()\n            serializer = InstrumentSerializer(queryset, many=True)\n            return serializer.data\n        if action == 'retrieve':\n            instance = Instrument.objects.get(id=instance_id)\n            serializer = InstrumentSerializer(instance)\n            return serializer.data",
+        "detail": "app.function",
+        "documentation": {}
+    },
+    {
+        "label": "manage_nom_formations",
+        "kind": 2,
+        "importPath": "app.function",
+        "description": "app.function",
+        "peekOfCode": "def manage_nom_formations(action, data=None, instance_id=None):\n    try:\n        if action == 'list':\n            queryset = NomFormation.objects.all()\n            serializer = NomFormationSerializer(queryset, many=True)\n            return serializer.data\n        if action == 'retrieve':\n            instance = NomFormation.objects.get(id=instance_id)\n            serializer = NomFormationSerializer(instance)\n            return serializer.data",
+        "detail": "app.function",
+        "documentation": {}
+    },
+    {
+        "label": "manage_services",
+        "kind": 2,
+        "importPath": "app.function",
+        "description": "app.function",
+        "peekOfCode": "def manage_services(action, data=None, instance_id=None):\n    try:\n        if action == 'list':\n            queryset = Service.objects.all()\n            serializer = ServiceSerializer(queryset, many=True)\n            return serializer.data\n        if action == 'retrieve':\n            instance = Service.objects.get(id=instance_id)\n            serializer = ServiceSerializer(instance)\n            return serializer.data",
+        "detail": "app.function",
+        "documentation": {}
+    },
+    {
+        "label": "manage_type_paiements",
+        "kind": 2,
+        "importPath": "app.function",
+        "description": "app.function",
+        "peekOfCode": "def manage_type_paiements(action, data=None, instance_id=None):\n    try:\n        if action == 'list':\n            queryset = TypePaiement.objects.all()\n            serializer = TypePaiementSerializer(queryset, many=True)\n            return serializer.data\n        if action == 'retrieve':\n            instance = TypePaiement.objects.get(id=instance_id)\n            serializer = TypePaiementSerializer(instance)\n            return serializer.data",
+        "detail": "app.function",
+        "documentation": {}
+    },
+    {
+        "label": "manage_reserver_services",
+        "kind": 2,
+        "importPath": "app.function",
+        "description": "app.function",
+        "peekOfCode": "def manage_reserver_services(action, data=None, instance_id=None):\n    try:\n        if action == 'list':\n            queryset = ReserverService.objects.all()\n            serializer = ReserverServiceSerializer(queryset, many=True)\n            return serializer.data\n        if action == 'retrieve':\n            instance = ReserverService.objects.get(id=instance_id)\n            serializer = ReserverServiceSerializer(instance)\n            return serializer.data",
+        "detail": "app.function",
+        "documentation": {}
+    },
+    {
+        "label": "manage_restauration",
+        "kind": 2,
+        "importPath": "app.function",
+        "description": "app.function",
+        "peekOfCode": "def manage_restauration(action, data=None, instance_id=None):\n    try:\n        if action == 'list':\n            queryset = Restauration.objects.all()\n            serializer = RestaurationSerializer(queryset, many=True)\n            return serializer.data\n        if action == 'retrieve':\n            instance = Restauration.objects.get(id=instance_id)\n            serializer = RestaurationSerializer(instance)\n            return serializer.data",
+        "detail": "app.function",
+        "documentation": {}
+    },
+    {
+        "label": "manage_comander_menu",
+        "kind": 2,
+        "importPath": "app.function",
+        "description": "app.function",
+        "peekOfCode": "def manage_comander_menu(action, data=None, instance_id=None):\n    try:\n        if action == 'list':\n            queryset = ComanderMenu.objects.all()\n            serializer = ComanderMenuSerializer(queryset, many=True)\n            return serializer.data\n        if action == 'retrieve':\n            instance = ComanderMenu.objects.get(id=instance_id)\n            serializer = ComanderMenuSerializer(instance)\n            return serializer.data",
+        "detail": "app.function",
+        "documentation": {}
+    },
+    {
+        "label": "manage_reserver_formation",
+        "kind": 2,
+        "importPath": "app.function",
+        "description": "app.function",
+        "peekOfCode": "def manage_reserver_formation(action, data=None, instance_id=None):\n    try:\n        if action == 'list':\n            queryset = ReserverFormation.objects.all()\n            serializer = ReserverFormationSerializer(queryset, many=True)\n            return serializer.data\n        if action == 'retrieve':\n            instance = ReserverFormation.objects.get(id=instance_id)\n            serializer = ReserverFormationSerializer(instance)\n            return serializer.data",
+        "detail": "app.function",
+        "documentation": {}
+    },
+    {
+        "label": "manage_artiste_invite",
+        "kind": 2,
+        "importPath": "app.function",
+        "description": "app.function",
+        "peekOfCode": "def manage_artiste_invite(action, data=None, instance_id=None):\n    try:\n        if action == 'list':\n            queryset = ArtisteInvite.objects.all()\n            serializer = ArtisteInviteSerializer(queryset, many=True)\n            return serializer.data\n        if action == 'retrieve':\n            instance = ArtisteInvite.objects.get(id=instance_id)\n            serializer = ArtisteInviteSerializer(instance)\n            return serializer.data",
+        "detail": "app.function",
+        "documentation": {}
+    },
+    {
+        "label": "manage_categorie_artiste",
+        "kind": 2,
+        "importPath": "app.function",
+        "description": "app.function",
+        "peekOfCode": "def manage_categorie_artiste(action, data=None, instance_id=None):\n    try:\n        if action == 'list':\n            queryset = CategorieArtiste.objects.all()\n            serializer = CategorieArtisteSerializer(queryset, many=True)\n            return serializer.data\n        if action == 'retrieve':\n            instance = CategorieArtiste.objects.get(id=instance_id)\n            serializer = CategorieArtisteSerializer(instance)\n            return serializer.data",
+        "detail": "app.function",
+        "documentation": {}
+    },
+    {
+        "label": "manage_user",
+        "kind": 2,
+        "importPath": "app.function",
+        "description": "app.function",
+        "peekOfCode": "def manage_user(action, data=None, instance_id=None):\n    try:\n        if action == 'list':\n            queryset = get_user_model().objects.all()\n            serializer = RegisterUserSerializer(queryset, many=True)\n            return serializer.data\n        if action == 'retrieve':\n            instance = get_user_model().objects.get(id=instance_id)\n            serializer = RegisterUserSerializer(instance)\n            return serializer.data",
+        "detail": "app.function",
         "documentation": {}
     },
     {
@@ -3374,7 +3480,7 @@
         "kind": 5,
         "importPath": "app.urls",
         "description": "app.urls",
-        "peekOfCode": "urlpatterns = [\n    path('users/', UserViewSet.as_view({'get': 'list', 'post': 'create'}), name='user-list'),\n\tpath('register/', RegisterUserView.as_view(), name='register'),\n    path('users/<int:pk>/', UserViewSet.as_view({'get': 'retrieve', 'put': 'update', 'patch': 'partial_update', 'delete': 'destroy'}), name='user-detail'),\n    path('api/delete-user/<int:user_id>/', delete_user, name='delete_user'),\n\tpath('login/', login_view, name='login'),\n\tpath('reset_password_email/', reset_password_email, name='reset_password_email'),\n\tpath('reset_password_confirm/<str:uidb64>/<str:token>', reset_password_confirm, name='reset_password_confirm'),\n    # path('assign_artiste_profile/', RendreArtisteView.as_view(), name='assign_artiste_profile'),\n    path('artistes/', ArtistesListView.as_view(), name='artistes-list'),",
+        "peekOfCode": "urlpatterns = [\n\tpath('register/', RegisterUserView.as_view(), name='register'),\n    path('api/delete-user/<int:user_id>/', delete_user, name='delete_user'),\n\tpath('login/', login_view, name='login'),\n\tpath('reset_password_email/', reset_password_email, name='reset_password_email'),\n\tpath('reset_password_confirm/<str:uidb64>/<str:token>', reset_password_confirm, name='reset_password_confirm'),\n    path('artistes/', ArtistesListView.as_view(), name='artistes-list'),    \n    path('regenerate-qr-codes/', views.regenerate_qr_codes, name='regenerate_qr_codes'),\n    path('codeqr/', views.CodeQRListCreateAPIView.as_view(), name='codeqr-list-create'),\n    path('codeqr/<int:pk>/', views.CodeQRRetrieveUpdateDestroyAPIView.as_view(), name='codeqr-retrieve-update-destroy'),",
         "detail": "app.urls",
         "documentation": {}
     },
@@ -3384,15 +3490,6 @@
         "importPath": "app.views",
         "description": "app.views",
         "peekOfCode": "class RegisterUserView(CreateAPIView):\n    queryset = get_user_model().objects.all()\n    permission_classes = (AllowAny,)\n    serializer_class = RegisterUserSerializer\n    def perform_create(self, serializer):\n        user = serializer.save()\n        self.send_registration_email(user)\n    def send_registration_email(self, user):\n        subject = 'Bienvenue sur AfricaSoundCity'\n        html_message = render_to_string('authentication/registration_email.html', {'user': user})",
-        "detail": "app.views",
-        "documentation": {}
-    },
-    {
-        "label": "UserViewSet",
-        "kind": 6,
-        "importPath": "app.views",
-        "description": "app.views",
-        "peekOfCode": "class UserViewSet(viewsets.ModelViewSet):\n    queryset = get_user_model().objects.all()\n    serializer_class = RegisterUserSerializer\n    def retrieve(self, request, *args, **kwargs):\n        user_instance = self.get_object()\n        serializer = self.get_serializer(user_instance)\n        return Response(serializer.data)\n    def update(self, request, *args, **kwargs):\n        user_instance = self.get_object()\n        serializer = self.get_serializer(user_instance, data=request.data, partial=True)",
         "detail": "app.views",
         "documentation": {}
     },
@@ -3410,61 +3507,7 @@
         "kind": 6,
         "importPath": "app.views",
         "description": "app.views",
-        "peekOfCode": "class ArtistesListView(APIView):\n    def get(self, request):\n        artistes = Artistes.objects.all()  # Récupère tous les artistes\n        serializer = ArtistesSerializer(artistes, many=True)  # Sérialise la liste des artistes\n        return Response(serializer.data, status=status.HTTP_200_OK)\nclass CentreViewSet(viewsets.ModelViewSet):\n    queryset = Centre.objects.all()\n    serializer_class = CentreSerializer\n    def list(self, request, *args, **kwargs):\n        queryset = self.filter_queryset(self.get_queryset())",
-        "detail": "app.views",
-        "documentation": {}
-    },
-    {
-        "label": "CentreViewSet",
-        "kind": 6,
-        "importPath": "app.views",
-        "description": "app.views",
-        "peekOfCode": "class CentreViewSet(viewsets.ModelViewSet):\n    queryset = Centre.objects.all()\n    serializer_class = CentreSerializer\n    def list(self, request, *args, **kwargs):\n        queryset = self.filter_queryset(self.get_queryset())\n        serializer = self.get_serializer(queryset, many=True)\n        return Response(serializer.data)\n    def retrieve(self, request, *args, **kwargs):\n        instance = self.get_object()\n        serializer = self.get_serializer(instance)",
-        "detail": "app.views",
-        "documentation": {}
-    },
-    {
-        "label": "ArtisteInviteViewSet",
-        "kind": 6,
-        "importPath": "app.views",
-        "description": "app.views",
-        "peekOfCode": "class ArtisteInviteViewSet(viewsets.ModelViewSet):\n    queryset = ArtisteInvite.objects.all()\n    serializer_class = ArtisteInviteSerializer\n    def list(self, request, *args, **kwargs):\n        queryset = self.filter_queryset(self.get_queryset())\n        serializer = self.get_serializer(queryset, many=True)\n        return Response(serializer.data)\n    def retrieve(self, request, *args, **kwargs):\n        instance = self.get_object()\n        serializer = self.get_serializer(instance)",
-        "detail": "app.views",
-        "documentation": {}
-    },
-    {
-        "label": "CategorieArtisteViewSet",
-        "kind": 6,
-        "importPath": "app.views",
-        "description": "app.views",
-        "peekOfCode": "class CategorieArtisteViewSet(viewsets.ModelViewSet):\n    queryset = CategorieArtiste.objects.all()\n    serializer_class = CategorieArtisteSerializer\n    def list(self, request, *args, **kwargs):\n        queryset = self.filter_queryset(self.get_queryset())\n        serializer = self.get_serializer(queryset, many=True)\n        return Response(serializer.data)\n    def retrieve(self, request, *args, **kwargs):\n        instance = self.get_object()\n        serializer = self.get_serializer(instance)",
-        "detail": "app.views",
-        "documentation": {}
-    },
-    {
-        "label": "TypeDiffusionViewSet",
-        "kind": 6,
-        "importPath": "app.views",
-        "description": "app.views",
-        "peekOfCode": "class TypeDiffusionViewSet(viewsets.ModelViewSet):\n    queryset = TypeDiffusion.objects.all()\n    serializer_class = TypeDiffusionSerializer    \n    def list(self, request, *args, **kwargs):\n        queryset = self.filter_queryset(self.get_queryset())\n        serializer = self.get_serializer(queryset, many=True)\n        return Response(serializer.data)\n    def retrieve(self, request, *args, **kwargs):\n        instance = self.get_object()\n        serializer = self.get_serializer(instance)",
-        "detail": "app.views",
-        "documentation": {}
-    },
-    {
-        "label": "TypeSpectacleViewSet",
-        "kind": 6,
-        "importPath": "app.views",
-        "description": "app.views",
-        "peekOfCode": "class TypeSpectacleViewSet(viewsets.ModelViewSet):\n    queryset = TypeSpectacle.objects.all()\n    serializer_class = TypeSpectacleSerializer\n    def list(self, request, *args, **kwargs):\n        queryset = self.filter_queryset(self.get_queryset())\n        serializer = self.get_serializer(queryset, many=True)\n        return Response(serializer.data)\n    def retrieve(self, request, *args, **kwargs):\n        instance = self.get_object()\n        serializer = self.get_serializer(instance)",
-        "detail": "app.views",
-        "documentation": {}
-    },
-    {
-        "label": "SpectacleViewSet",
-        "kind": 6,
-        "importPath": "app.views",
-        "description": "app.views",
-        "peekOfCode": "class SpectacleViewSet(viewsets.ModelViewSet):\n    queryset = Spectacle.objects.all()\n    serializer_class = SpectacleSerializer\n    def list(self, request, *args, **kwargs):\n        queryset = self.filter_queryset(self.get_queryset())\n        serializer = self.get_serializer(queryset, many=True)\n        return Response(serializer.data)\n    def retrieve(self, request, *args, **kwargs):\n        instance = self.get_object()\n        serializer = self.get_serializer(instance)",
+        "peekOfCode": "class ArtistesListView(APIView):\n    def get(self, request):\n        artistes = Artistes.objects.all()  # Récupère tous les artistes\n        serializer = ArtistesSerializer(artistes, many=True)  # Sérialise la liste des artistes\n        return Response(serializer.data, status=status.HTTP_200_OK)\nclass CodeQRListCreateAPIView(generics.ListCreateAPIView):\n    queryset = CodeQR.objects.all()\n    serializer_class = CodeQRSerializer\nclass CodeQRRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):\n    queryset = CodeQR.objects.all()",
         "detail": "app.views",
         "documentation": {}
     },
@@ -3496,101 +3539,11 @@
         "documentation": {}
     },
     {
-        "label": "ReservationViewSet",
-        "kind": 6,
-        "importPath": "app.views",
-        "description": "app.views",
-        "peekOfCode": "class ReservationViewSet(viewsets.ModelViewSet):\n    queryset = Reservation.objects.all()\n    serializer_class = ReservationSerializer\n    def list(self, request, *args, **kwargs):\n        queryset = self.filter_queryset(self.get_queryset())\n        serializer = self.get_serializer(queryset, many=True)\n        return Response(serializer.data)\n    def retrieve(self, request, *args, **kwargs):\n        instance = self.get_object()\n        serializer = self.get_serializer(instance)",
-        "detail": "app.views",
-        "documentation": {}
-    },
-    {
-        "label": "TypeInstrumentViewSet",
-        "kind": 6,
-        "importPath": "app.views",
-        "description": "app.views",
-        "peekOfCode": "class TypeInstrumentViewSet(viewsets.ModelViewSet):\n    queryset = TypeInstrument.objects.all()\n    serializer_class = TypeInstrumentSerializer\n    def list(self, request, *args, **kwargs):\n        queryset = self.filter_queryset(self.get_queryset())\n        serializer = self.get_serializer(queryset, many=True)\n        return Response(serializer.data)\n    def retrieve(self, request, *args, **kwargs):\n        instance = self.get_object()\n        serializer = self.get_serializer(instance)",
-        "detail": "app.views",
-        "documentation": {}
-    },
-    {
-        "label": "InstrumentViewSet",
-        "kind": 6,
-        "importPath": "app.views",
-        "description": "app.views",
-        "peekOfCode": "class InstrumentViewSet(viewsets.ModelViewSet):\n    queryset = Instrument.objects.all()\n    serializer_class = InstrumentSerializer\n    def list(self, request, *args, **kwargs):\n        queryset = self.filter_queryset(self.get_queryset())\n        serializer = self.get_serializer(queryset, many=True)\n        return Response(serializer.data)\n    def retrieve(self, request, *args, **kwargs):\n        instance = self.get_object()\n        serializer = self.get_serializer(instance)",
-        "detail": "app.views",
-        "documentation": {}
-    },
-    {
-        "label": "NomFormationViewSet",
-        "kind": 6,
-        "importPath": "app.views",
-        "description": "app.views",
-        "peekOfCode": "class NomFormationViewSet(viewsets.ModelViewSet):\n    queryset = NomFormation.objects.all()\n    serializer_class = NomFormationSerializer\n    def list(self, request, *args, **kwargs):\n        queryset = self.filter_queryset(self.get_queryset())\n        # formation_data = [formation.serialize() for formation in queryset]\n        serializer = self.get_serializer(queryset, many=True)\n        return Response(serializer.data)\n    def retrieve(self, request, *args, **kwargs):\n        instance = self.get_object()",
-        "detail": "app.views",
-        "documentation": {}
-    },
-    {
-        "label": "ServiceViewSet",
-        "kind": 6,
-        "importPath": "app.views",
-        "description": "app.views",
-        "peekOfCode": "class ServiceViewSet(viewsets.ModelViewSet):\n    queryset = Service.objects.all()\n    serializer_class = ServiceSerializer\n    def list(self, request, *args, **kwargs):\n        queryset = self.filter_queryset(self.get_queryset())\n        serializer = self.get_serializer(queryset, many=True)\n        return Response(serializer.data)\n    def retrieve(self, request, *args, **kwargs):\n        instance = self.get_object()\n        serializer = self.get_serializer(instance)",
-        "detail": "app.views",
-        "documentation": {}
-    },
-    {
-        "label": "TypePaiementViewSet",
-        "kind": 6,
-        "importPath": "app.views",
-        "description": "app.views",
-        "peekOfCode": "class TypePaiementViewSet(viewsets.ModelViewSet):\n    queryset = TypePaiement.objects.all()\n    serializer_class = TypePaiementSerializer\n    def list(self, request, *args, **kwargs):\n        queryset = self.filter_queryset(self.get_queryset())\n        serializer = self.get_serializer(queryset, many=True)\n        return Response(serializer.data)\n    def retrieve(self, request, *args, **kwargs):\n        instance = self.get_object()\n        serializer = self.get_serializer(instance)",
-        "detail": "app.views",
-        "documentation": {}
-    },
-    {
-        "label": "ReserverServiceViewSet",
-        "kind": 6,
-        "importPath": "app.views",
-        "description": "app.views",
-        "peekOfCode": "class ReserverServiceViewSet(viewsets.ModelViewSet):\n    queryset = ReserverService.objects.all()\n    serializer_class = ReserverServiceSerializer\n    def list(self, request, *args, **kwargs):\n        queryset = self.filter_queryset(self.get_queryset())\n        serializer = self.get_serializer(queryset, many=True)\n        return Response(serializer.data)\n    def retrieve(self, request, *args, **kwargs):\n        instance = self.get_object()\n        serializer = self.get_serializer(instance)",
-        "detail": "app.views",
-        "documentation": {}
-    },
-    {
-        "label": "RestaurationViewSet",
-        "kind": 6,
-        "importPath": "app.views",
-        "description": "app.views",
-        "peekOfCode": "class RestaurationViewSet(viewsets.ModelViewSet):\n    queryset = Restauration.objects.all()\n    serializer_class = RestaurationSerializer\n    def list(self, request, *args, **kwargs):\n        queryset = self.filter_queryset(self.get_queryset())\n        serializer = self.get_serializer(queryset, many=True)\n        return Response(serializer.data)\n    def retrieve(self, request, *args, **kwargs):\n        instance = self.get_object()\n        serializer = self.get_serializer(instance)",
-        "detail": "app.views",
-        "documentation": {}
-    },
-    {
-        "label": "ComanderMenuViewSet",
-        "kind": 6,
-        "importPath": "app.views",
-        "description": "app.views",
-        "peekOfCode": "class ComanderMenuViewSet(viewsets.ModelViewSet):\n    queryset = ComanderMenu.objects.all()\n    serializer_class = ComanderMenuSerializer\n    def list(self, request, *args, **kwargs):\n        queryset = self.filter_queryset(self.get_queryset())\n        serializer = self.get_serializer(queryset, many=True)\n        return Response(serializer.data)\n    def retrieve(self, request, *args, **kwargs):\n        instance = self.get_object()\n        serializer = self.get_serializer(instance)",
-        "detail": "app.views",
-        "documentation": {}
-    },
-    {
-        "label": "ReserverFormationViewSet",
-        "kind": 6,
-        "importPath": "app.views",
-        "description": "app.views",
-        "peekOfCode": "class ReserverFormationViewSet(viewsets.ModelViewSet):\n    queryset = ReserverFormation.objects.all()\n    serializer_class = ReserverFormationSerializer\n    def list(self, request, *args, **kwargs):\n        queryset = self.filter_queryset(self.get_queryset())\n        serializer = self.get_serializer(queryset, many=True)\n        return Response(serializer.data)\n    def retrieve(self, request, *args, **kwargs):\n        instance = self.get_object()\n        serializer = self.get_serializer(instance)",
-        "detail": "app.views",
-        "documentation": {}
-    },
-    {
         "label": "ShowsListView",
         "kind": 6,
         "importPath": "app.views",
         "description": "app.views",
-        "peekOfCode": "class ShowsListView(ListView):\n    template_name = 'control_user/pages/shows.html'\n    context_object_name = 'spectacles'\n    def get_queryset(self):\n        response_spectacles = requests.get(API_SPECTACLE_URL)\n        spectacles = response_spectacles.json() if response_spectacles.status_code == 200 else []\n        type_spectacle_id = self.kwargs.get('type_spectacle_id')\n        queryset = []\n        for spectacle in spectacles:\n            try:",
+        "peekOfCode": "class ShowsListView(ListView):\n    template_name = 'control_user/pages/shows.html'\n    context_object_name = 'spectacles'\n    def get_queryset(self):\n        # Récupérer la liste des spectacles via la fonction utilitaire\n        spectacles = manage_spectacles(action='list')\n        if not isinstance(spectacles, list):\n            spectacles = []  # Gestion d'erreur si la fonction utilitaire retourne un message d'erreur\n        type_spectacle_id = self.kwargs.get('type_spectacle_id')\n        queryset = []",
         "detail": "app.views",
         "documentation": {}
     },
@@ -3635,7 +3588,7 @@
         "kind": 2,
         "importPath": "app.views",
         "description": "app.views",
-        "peekOfCode": "def regenerate_qr_codes(request):\n    CodeQR.objects.all().delete()\n    for spectacle in Spectacle.objects.all():\n        spectacle.generer_code_qr()\n    return HttpResponse(\"Codes QR régénérés avec succès.\")\nclass ReservationViewSet(viewsets.ModelViewSet):\n    queryset = Reservation.objects.all()\n    serializer_class = ReservationSerializer\n    def list(self, request, *args, **kwargs):\n        queryset = self.filter_queryset(self.get_queryset())",
+        "peekOfCode": "def regenerate_qr_codes(request):\n    CodeQR.objects.all().delete()\n    for spectacle in Spectacle.objects.all():\n        spectacle.generer_code_qr()\n    return HttpResponse(\"Codes QR régénérés avec succès.\")\n###################    La vue des pages    ###################\ndef change_language(request, language):\n    activate(language_code)\n    if language:\n        translation.activate(language)",
         "detail": "app.views",
         "documentation": {}
     },
@@ -3653,7 +3606,7 @@
         "kind": 2,
         "importPath": "app.views",
         "description": "app.views",
-        "peekOfCode": "def countdown(request):\n    # Récupérer la prochaine date de concert à partir de la base de données\n    prochain_evenement = ProchainConcert.objects.select_related('spectacle').first()\n    return render(request, 'countdown.html', {'prochain_evenement': prochain_evenement,})\ndef home(request):\n    response_spectacles = requests.get(API_SPECTACLE_URL)\n    if response_spectacles.status_code == 200:\n        spectacles = response_spectacles.json()\n    else:\n        spectacles = []",
+        "peekOfCode": "def countdown(request):\n    # Récupérer la prochaine date de concert à partir de la base de données\n    prochain_evenement = ProchainConcert.objects.select_related('spectacle').first()\n    return render(request, 'countdown.html', {'prochain_evenement': prochain_evenement,})\ndef home(request):\n    spectacles = manage_spectacles(action='list')\n    centres = manage_centres(action='list')\n    prochain_evenement = ProchainConcert.objects.first()\n    prochainconcert = ProchainConcert.objects.all()\n    # carrousel = ProchainConcert.objects.first()",
         "detail": "app.views",
         "documentation": {}
     },
@@ -3662,7 +3615,7 @@
         "kind": 2,
         "importPath": "app.views",
         "description": "app.views",
-        "peekOfCode": "def home(request):\n    response_spectacles = requests.get(API_SPECTACLE_URL)\n    if response_spectacles.status_code == 200:\n        spectacles = response_spectacles.json()\n    else:\n        spectacles = []\n    response_centres = requests.get(API_CENTRE_URL)\n    centres = response_centres.json()\n    prochain_evenement = ProchainConcert.objects.first()\n    prochainconcert = ProchainConcert.objects.all()",
+        "peekOfCode": "def home(request):\n    spectacles = manage_spectacles(action='list')\n    centres = manage_centres(action='list')\n    prochain_evenement = ProchainConcert.objects.first()\n    prochainconcert = ProchainConcert.objects.all()\n    # carrousel = ProchainConcert.objects.first()\n    carrousels = Carrousel.objects.all()\n    context = {\n        'spectacles': spectacles,\n        'centres': centres,",
         "detail": "app.views",
         "documentation": {}
     },
@@ -3671,7 +3624,7 @@
         "kind": 2,
         "importPath": "app.views",
         "description": "app.views",
-        "peekOfCode": "def streamings(request):\n    response_spectacles = requests.get(API_SPECTACLE_URL)\n    if response_spectacles.status_code == 200:\n        spectacles = response_spectacles.json()\n    else:\n        spectacles = []\n    return render(request, 'control_user/pages/streamings.html', {'spectacles': spectacles})\n@login_required\ndef access_streaming(request, spectacle_id):\n    spectacle = get_object_or_404(Spectacle, pk=spectacle_id)",
+        "peekOfCode": "def streamings(request):\n    spectacles = manage_spectacles(action='list')\n    return render(request, 'control_user/pages/streamings.html', {'spectacles': spectacles})\n@login_required\ndef access_streaming(request, spectacle_id):\n    spectacle = get_object_or_404(Spectacle, pk=spectacle_id)\n    device_info = request.META['HTTP_USER_AGENT']  # Utiliser le user agent comme information sur l'appareil\n    if request.method == 'POST':\n        code_input = ''.join([\n            request.POST.get(f'code_digit_{i}', '') for i in range(1, 7)",
         "detail": "app.views",
         "documentation": {}
     },
@@ -3716,7 +3669,7 @@
         "kind": 2,
         "importPath": "app.views",
         "description": "app.views",
-        "peekOfCode": "def service(request):\n    response_formations = requests.get(API_FORMATION_URL)\n    formations = response_formations.json()\n    return render(request, 'control_user/pages/service.html', {'formations': formations})\ndef reservet(request):\n    instrument = request.GET.get('instrument', '')\n    prix = request.GET.get('prix', '')\n    context = {\n        'formation': {'type_instrument': instrument},\n        'prix': prix",
+        "peekOfCode": "def service(request):\n    formations = manage_nom_formations(action='list')\n    return render(request, 'control_user/pages/service.html', {'formations': formations})\ndef reservet(request):\n    instrument = request.GET.get('instrument', '')\n    prix = request.GET.get('prix', '')\n    context = {\n        'formation': {'type_instrument': instrument},\n        'prix': prix\n    }",
         "detail": "app.views",
         "documentation": {}
     },
@@ -3743,7 +3696,7 @@
         "kind": 2,
         "importPath": "app.views",
         "description": "app.views",
-        "peekOfCode": "def commander(request):\n    return render(request, 'control_user/pages/commander.html')\ndef ticketdetails(request, spectacle_id):\n    api_url_spectacles = f'{API_SPECTACLE_URL}{spectacle_id}/'\n    response_spectacles = requests.get(api_url_spectacles)\n    if response_spectacles.status_code == 200:\n        spectacle = response_spectacles.json()\n        return render(request, 'control_user/pages/ticketdetails.html', {'spectacle': spectacle,\n                                                                         'kkiapay_api_key': 'kkiapay_api_key',\n                                                                         'kkiapay_callback_url': 'kkiapay_callback_url'})",
+        "peekOfCode": "def commander(request):\n    return render(request, 'control_user/pages/commander.html')\ndef ticketdetails(request, spectacle_id):\n    spectacle = manage_spectacles(action='retrieve', instance_id=spectacle_id)\n    return render(\n        request, \n        'control_user/pages/ticketdetails.html', \n        {\n            'spectacle': spectacle, \n            'kkiapay_api_key': 'kkiapay_api_key', ",
         "detail": "app.views",
         "documentation": {}
     },
@@ -3752,7 +3705,7 @@
         "kind": 2,
         "importPath": "app.views",
         "description": "app.views",
-        "peekOfCode": "def ticketdetails(request, spectacle_id):\n    api_url_spectacles = f'{API_SPECTACLE_URL}{spectacle_id}/'\n    response_spectacles = requests.get(api_url_spectacles)\n    if response_spectacles.status_code == 200:\n        spectacle = response_spectacles.json()\n        return render(request, 'control_user/pages/ticketdetails.html', {'spectacle': spectacle,\n                                                                         'kkiapay_api_key': 'kkiapay_api_key',\n                                                                         'kkiapay_callback_url': 'kkiapay_callback_url'})\n    else:\n        return HttpResponseNotFound('Spectacle not found')",
+        "peekOfCode": "def ticketdetails(request, spectacle_id):\n    spectacle = manage_spectacles(action='retrieve', instance_id=spectacle_id)\n    return render(\n        request, \n        'control_user/pages/ticketdetails.html', \n        {\n            'spectacle': spectacle, \n            'kkiapay_api_key': 'kkiapay_api_key', \n            'kkiapay_callback_url': 'kkiapay_callback_url'\n        }",
         "detail": "app.views",
         "documentation": {}
     },
@@ -3761,7 +3714,7 @@
         "kind": 2,
         "importPath": "app.views",
         "description": "app.views",
-        "peekOfCode": "def restaurant(request):\n    response_restaurants = requests.get(API_RESTAURATION_URL)\n    if response_restaurants.status_code == 200:\n        restaurants = response_restaurants.json()\n    else:\n        restaurants = []\n    return render(request, 'control_user/pages/restaurant.html', {'restaurants': restaurants})\ndef page_register(request):\n    \treturn render(request, 'authentication/authentication-register.html')\ndef page_login(request):",
+        "peekOfCode": "def restaurant(request):\n    restaurants = manage_restauration(action='list')\n    return render(request, 'control_user/pages/restaurant.html', {'restaurants': restaurants})\ndef page_register(request):\n    return render(request, 'authentication/authentication-register.html')\ndef page_login(request):\n\treturn render(request, 'authentication/authentication-login.html')\ndef page_password_email(request):\n\treturn render(request, 'authentication/reset_password_email.html')",
         "detail": "app.views",
         "documentation": {}
     },
@@ -3770,7 +3723,7 @@
         "kind": 2,
         "importPath": "app.views",
         "description": "app.views",
-        "peekOfCode": "def page_register(request):\n    \treturn render(request, 'authentication/authentication-register.html')\ndef page_login(request):\n\treturn render(request, 'authentication/authentication-login.html')\ndef page_password_email(request):\n\treturn render(request, 'authentication/reset_password_email.html')",
+        "peekOfCode": "def page_register(request):\n    return render(request, 'authentication/authentication-register.html')\ndef page_login(request):\n\treturn render(request, 'authentication/authentication-login.html')\ndef page_password_email(request):\n\treturn render(request, 'authentication/reset_password_email.html')",
         "detail": "app.views",
         "documentation": {}
     },
@@ -3789,15 +3742,6 @@
         "importPath": "app.views",
         "description": "app.views",
         "peekOfCode": "def page_password_email(request):\n\treturn render(request, 'authentication/reset_password_email.html')",
-        "detail": "app.views",
-        "documentation": {}
-    },
-    {
-        "label": "env",
-        "kind": 5,
-        "importPath": "app.views",
-        "description": "app.views",
-        "peekOfCode": "env = os.getenv('ENV', 'development').lower()\n# Charger les URLs dynamiquement en fonction de l'environnement\nif env == 'production':\n    API_SPECTACLE_URL = os.getenv('API_SPECTACLE_URL_PROD')\n    API_CENTRE_URL = os.getenv('API_CENTRE_URL_PROD')\n    API_FORMATION_URL = os.getenv('API_FORMATION_URL_PROD')\n    API_TYPE_SPECTACLE_URL = os.getenv('API_TYPE_SPECTACLE_URL_PROD')\n    API_RESTAURATION_URL = os.getenv('API_RESTAURATION_URL_PROD')\nelse:  # Environnement de développement par défaut\n    API_SPECTACLE_URL = os.getenv('API_SPECTACLE_URL_DEV')",
         "detail": "app.views",
         "documentation": {}
     },

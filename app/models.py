@@ -10,6 +10,7 @@ from django.contrib.auth.models import AbstractUser, BaseUserManager, Permission
 from django.contrib.auth.signals import user_logged_in
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.core.exceptions import ValidationError
+from django.core.files.base import ContentFile
 from django.utils.translation import gettext_lazy as _
 
 # Module d'import pour la generation et la securisation du code QR
@@ -190,7 +191,7 @@ class Spectacle(models.Model):
     description = models.TextField()
     ticket_disponible = models.PositiveIntegerField()
     is_gratuit = models.BooleanField(default=False)
-    prix = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    prix = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True, validators=[MinValueValidator(0)])
     heure_debut = models.TimeField()
     heure_fin = models.TimeField()
     lien_streaming = models.URLField(blank=True, null=True)
@@ -268,10 +269,25 @@ class CodeQR(models.Model):
             self.save()
     
     def generer_code_secret(self):
-        # Logique pour générer un code secret à 6 chiffres
         characters = string.ascii_uppercase + string.digits
         self.code_secret = ''.join(random.choice(characters) for _ in range(6))
         self.save()
+
+        # Générer le QR code basé sur le token (ou autre information que tu veux coder)
+        qr = qrcode.QRCode(version=1, error_correction=qrcode.constants.ERROR_CORRECT_L, box_size=10, border=4)
+        qr.add_data(self.token)  # On ajoute le token ou toute autre information unique
+        qr.make(fit=True)
+
+        # Créer l'image du QR code
+        img = qr.make_image(fill='black', back_color='white')
+
+        # Sauver l'image dans un champ ImageField
+        img_io = BytesIO()
+        img.save(img_io, 'PNG')  # Sauvegarder l'image en mémoire
+        img_io.seek(0)
+
+        self.code_qr.save(f'{self.token}.png', ContentFile(img_io.read()), save=False)
+        self.save()  # Sauver à nouveau l'objet pour enregistrer l'image dans la base de données
 
 
 class Achat(models.Model):
@@ -345,7 +361,7 @@ class NomFormation(models.Model):
     type_instrument = models.ForeignKey(TypeInstrument, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='instrument/', null=True, blank=True)
     description = models.TextField()
-    prix = models.DecimalField(max_digits=10, decimal_places=2)
+    prix = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(0)])
     
     def __str__(self):
         return f"{self.nom_formation}- {self.type_instrument}"

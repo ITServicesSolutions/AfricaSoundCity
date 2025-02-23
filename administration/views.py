@@ -1,3 +1,5 @@
+from datetime import datetime
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
@@ -232,15 +234,21 @@ def ArtistesList(request):
     return render(request, 'administration/pages/Artistes/ArtistesList.html', context)
 
 def ArtistesCreate(request):
+    form = ArtistesForm()
+
     if request.method == 'POST':
-        form = ArtistesForm(request.POST, request.FILES)
-        if form.is_valid():
-            artiste = form.save(commit=False)
-            artiste.user = request.user  # Associe l'utilisateur actuel
-            artiste.save()
-            return redirect('ArtistesList')
-    else:
-        form = ArtistesForm()
+        # Vérifie si l'utilisateur a déjà un artiste
+        if Artistes.objects.filter(user=request.user).exists():
+            messages.error(request, "Vous avez déjà un artiste enregistré.")
+        else:
+            form = ArtistesForm(request.POST, request.FILES)
+            if form.is_valid():
+                artiste = form.save(commit=False)
+                artiste.user = request.user  # Associe l'utilisateur actuel
+                artiste.save()
+                messages.success(request, "Artiste créé avec succès !")
+                form = ArtistesForm()
+    
     context = {'form': form}
     return render(request, 'administration/pages/Artistes/ArtistesCreate.html', context)
 
@@ -256,12 +264,13 @@ def ArtistesUpdate(request, pk):
     context = {'form': form}
     return render(request, 'administration/pages/Artistes/ArtistesUpdate.html', context)
 
+
 def ArtistesDelete(request, pk):
-    artistes = get_object_or_404(Artistes, pk=pk)
+    artiste = get_object_or_404(Artistes, pk=pk)  # Récupère l'artiste à supprimer
     if request.method == 'POST':
-        carrousel.delete()
-        return redirect('ArtistesList')
-    context = {'artistes': artistes}
+        artiste.delete()  # Supprime l'artiste
+        return redirect('ArtistesList')  # Redirige vers la liste des artistes après suppression
+    context = {'artistes': artiste}
     return render(request, 'administration/pages/Artistes/ArtistesDelete.html', context)
 
 
@@ -461,17 +470,30 @@ def SpectacleList(request):
     context = {'spectacle': spectacle}
     return render(request, 'administration/pages/Spectacle/SpectacleList.html', context)
 
+
 def SpectacleCreate(request):
     if request.method == 'POST':
-        form = SpectacleForm(request.POST)
+        form = SpectacleForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            return redirect('SpectacleList')  # Redirige vers la liste des spectacles après une soumission valide
+            spectacle = form.save(commit=False)
+
+            # Vérifie et convertit la date si nécessaire
+            date_str = request.POST.get('date')
+            try:
+                spectacle.date = datetime.strptime(date_str, "%Y-%m-%d").date()  # Format attendu
+            except ValueError:
+                messages.error(request, "Format de date invalide. Utilisez AAAA-MM-JJ.")
+                return render(request, 'administration/pages/Spectacle/SpectacleCreate.html', {'form': form})
+
+            spectacle.save()
+            print(f"[+] Données de Spectacle : \n\n {spectacle}")
+            messages.success(request, "Spectacle ajouté avec succès !")
+            return redirect('SpectacleList')
         else:
-            # Si le formulaire n'est pas valide, il renvoie le formulaire avec les erreurs
-            return render(request, 'administration/pages/Spectacle/SpectacleCreate.html', {'form': form})
+            messages.error(request, "Le formulaire contient des erreurs.")
     else:
-        form = SpectacleForm()  # Si c'est une requête GET, on crée un formulaire vide
+        form = SpectacleForm()
+    
     return render(request, 'administration/pages/Spectacle/SpectacleCreate.html', {'form': form})
 
 def SpectacleUpdate(request, pk):
@@ -508,7 +530,9 @@ def CodeQRCreate(request):
     if request.method == 'POST':
         form = CodeQRForm(request.POST)
         if form.is_valid():
-            form.save()
+            codeqr = form.save(commit=False)  # Ne pas encore sauvegarder
+            codeqr.generer_code_secret()  # Générer un code secret unique
+            codeqr.save()  # Sauver l'objet dans la base de données
             return redirect('CodeQRList')
     else:
         form = CodeQRForm()
@@ -557,6 +581,8 @@ def ProchainConcertCreate(request):
         if form.is_valid():
             form.save()
             return redirect('ProchainConcertList')
+        else:
+            print(form.errors)
     else:
         form = ProchainConcertForm()
     context = {'form': form}
@@ -653,7 +679,7 @@ def TypeInstrumentUpdate(request, pk):
 def TypeInstrumentDelete(request, pk):
     typeInstrument = get_object_or_404(TypeInstrument, pk=pk)
     if request.method == 'POST':
-        TypeInstrument.delete()
+        typeInstrument.delete()
         return redirect('TypeInstrumentList')
     context = {'typeInstrument': typeInstrument}
     return render(request, 'administration/pages/TypeInstrument/TypeInstrumentDelete.html', context)
@@ -691,7 +717,7 @@ def InstrumentUpdate(request, pk):
 def InstrumentDelete(request, pk):
     instrument = get_object_or_404(Instrument, pk=pk)
     if request.method == 'POST':
-        Instrument.delete()
+        instrument.delete()
         return redirect('InstrumentList')
     context = {'instrument': instrument}
     return render(request, 'administration/pages/Instrument/InstrumentDelete.html', context)
@@ -729,7 +755,7 @@ def NomFormationUpdate(request, pk):
 def NomFormationDelete(request, pk):
     nomFormation = get_object_or_404(NomFormation, pk=pk)
     if request.method == 'POST':
-        NomFormation.delete()
+        nomFormation.delete()
         return redirect('NomFormationList')
     context = {'nomFormation': nomFormation}
     return render(request, 'administration/pages/NomFormation/NomFormationDelete.html', context)
@@ -760,7 +786,7 @@ def RestaurationList(request):
 
 def RestaurationCreate(request):
     if request.method == 'POST':
-        form = RestaurationForm(request.POST)
+        form = RestaurationForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
             return redirect('RestaurationList')
@@ -784,7 +810,7 @@ def RestaurationUpdate(request, pk):
 def RestaurationDelete(request, pk):
     restauration = get_object_or_404(Restauration, pk=pk)
     if request.method == 'POST':
-        Restauration.delete()
+        restauration.delete()
         return redirect('RestaurationList')
     context = {'restauration': restauration}
     return render(request, 'administration/pages/Restauration/RestaurationDelete.html', context)
@@ -891,7 +917,7 @@ def CarrouselList(request):
 
 def CarrouselCreate(request):
     if request.method == 'POST':
-        form = CarrouselForm(request.POST)
+        form = CarrouselForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('CarrouselList')
@@ -915,7 +941,7 @@ def CarrouselUpdate(request, pk):
 def CarrouselDelete(request, pk):
     carrousel = get_object_or_404(Carrousel, pk=pk)
     if request.method == 'POST':
-        Carrousel.delete()
+        carrousel.delete()
         return redirect('CarrouselList')
     context = {'carrousel': carrousel}
     return render(request, 'administration/pages/Carrousel/CarrouselDelete.html', context)

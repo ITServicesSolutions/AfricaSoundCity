@@ -1,0 +1,15 @@
+.btn-danger {
+    transition: all 0.3s ease;
+}
+
+.btn-danger:hover {
+    background-color: white;
+    color: #dc3545;  /* Rouge clair pour le texte lorsque le fond est blanc */
+    border-color: #dc3545;
+}
+
+.btn-danger:hover, .btn-danger:focus {
+    color: white !important;  /* S'assurer que le texte reste blanc */
+    background-color: #dc3545 !important;  /* Garder la couleur rouge pour le fond */
+    border-color: #dc3545 !important;
+}

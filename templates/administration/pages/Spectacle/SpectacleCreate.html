@@ -43,6 +43,31 @@
     </div>
 </div>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Fonction pour désactiver/activer le champ Prix en fonction de "is_gratuit"
+        const isGratuitCheckbox = document.getElementById('id_is_gratuit');  // ID du champ is_gratuit
+        const prixField = document.getElementById('id_prix');  // ID du champ prix
+
+        function togglePrixField() {
+            if (isGratuitCheckbox.checked) {
+                prixField.disabled = true;  // Désactive le champ Prix si "is_gratuit" est coché
+            } else {
+                prixField.disabled = false;  // Réactive le champ Prix si "is_gratuit" est décoché
+            }
+        }
+
+        // Initialiser l'état du champ Prix lorsque la page est chargée
+        togglePrixField();
+
+        // Ajouter un événement pour changer l'état de prix quand "is_gratuit" change
+        isGratuitCheckbox.addEventListener('change', togglePrixField);
+
+        // Ajouter l'attribut min="0" sur le champ prix pour empêcher les valeurs négatives
+        prixField.setAttribute('min', '0');  // Assurer que le prix ne soit pas inférieur à 0
+    });
+</script>
+
 <style>
     .card {
         border: none;

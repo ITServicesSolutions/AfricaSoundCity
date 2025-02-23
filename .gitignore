@@ -38,6 +38,7 @@ Thumbs.db
 .env/
 venv/
 africaEnv/
+virt/
 
 # Configuration des fichiers de secrets
 config/settings/local.py

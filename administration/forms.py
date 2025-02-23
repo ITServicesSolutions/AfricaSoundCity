@@ -52,12 +52,17 @@ class SpectacleForm(ModelForm):
         model = Spectacle
         fields = ['type_spectacle', 'nom_spectacle', 'image', 'date', 'lieu', 'description', 
                     'ticket_disponible', 'is_gratuit', 'prix', 'heure_debut', 'heure_fin', 'lien_streaming', 'is_valid']
+        widgets = {
+            'date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'heure_debut': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
+            'heure_fin': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
+        }
         
 
 class CodeQRForm(ModelForm):
     class Meta:
         model = CodeQR
-        fields = ['spectacle', 'code_qr', 'token']
+        fields = ['spectacle', 'token']
 
 
 class AchatForm(ModelForm):
@@ -71,6 +76,9 @@ class ProchainConcertForm(ModelForm):
     class Meta:
         model = ProchainConcert
         fields = ['date', 'spectacle']
+        widgets = {
+            'date': forms.DateTimeInput(attrs={'type': 'datetime-local'})
+        }
      
      
 class CarrouselForm(ModelForm):
